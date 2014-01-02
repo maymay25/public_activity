@@ -1,0 +1,10 @@
+<div id="footer">
+    <div class="footer_wrap">
+        <div class='copyright'>沪 ICP备 13027097号</div>
+    </div>
+    <div class="hidden footScript">
+      <a href="/thecomfortplace/sitemap">安慰小屋最新列表</a>
+      <%= yield(:footScript) if content_for? :footScript %>
+      <%= render partial:'bdhm' %>
+    </div>
+</div>

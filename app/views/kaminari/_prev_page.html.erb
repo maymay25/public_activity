@@ -1,0 +1,5 @@
+<% unless current_page.first? %>
+    <span class="prev">
+        <%= link_to '上一页', url, :rel => 'prev', class: 'next' %>
+    </span>
+<% end %>

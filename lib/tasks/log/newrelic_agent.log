@@ -1,0 +1,58 @@
+# Logfile created on 2013-12-04 10:29:05 +0800 by logger.rb/41954
+[12/04/13 10:29:05 +0800 jeffrey-PC (6608)] INFO : Starting the New Relic agent in "development" environment.
+[12/04/13 10:29:05 +0800 jeffrey-PC (6608)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "development" section of your newrelic.yml.
+[12/04/13 10:29:05 +0800 jeffrey-PC (6608)] INFO : Reading configuration from 
+[12/04/13 10:29:05 +0800 jeffrey-PC (6608)] ERROR : Unable to read configuration file : Is a directory - d:/apps/comforthouse/lib/tasks
+[12/04/13 10:29:05 +0800 jeffrey-PC (6608)] INFO : Enabling the Request Sampler.
+[12/04/13 10:29:05 +0800 jeffrey-PC (6608)] INFO : Enabling the Request Sampler.
+[12/04/13 10:29:05 +0800 jeffrey-PC (6608)] INFO : Environment: development
+[12/04/13 10:29:05 +0800 jeffrey-PC (6608)] INFO : Dispatcher: thin
+[12/04/13 10:29:05 +0800 jeffrey-PC (6608)] INFO : Application: development
+[12/04/13 10:29:05 +0800 jeffrey-PC (6608)] WARN : No license key found in newrelic.yml config. This often means your newrelic.yml is missing a section for the running environment 'development'
+[12/04/13 10:29:05 +0800 jeffrey-PC (6608)] INFO : Installing ActiveRecord 4 instrumentation
+[12/04/13 10:29:05 +0800 jeffrey-PC (6608)] INFO : Installing Net instrumentation
+[12/04/13 10:29:05 +0800 jeffrey-PC (6608)] INFO : Installing deferred Rack instrumentation
+[12/04/13 10:29:05 +0800 jeffrey-PC (6608)] INFO : Installing Sidekiq instrumentation
+[12/04/13 10:29:05 +0800 jeffrey-PC (6608)] INFO : Installing Rails 4 Controller instrumentation
+[12/04/13 10:29:05 +0800 jeffrey-PC (6608)] INFO : Installing Rails 4 view instrumentation
+[12/04/13 10:29:05 +0800 jeffrey-PC (6608)] INFO : Installing Rails4 Error instrumentation
+[12/04/13 10:29:05 +0800 jeffrey-PC (6608)] INFO : Finished instrumentation
+[12/04/13 10:29:05 +0800 jeffrey-PC (6608)] WARN : Failed to determine processor count, assuming 1
+[12/04/13 10:30:00 +0800 jeffrey-PC (6700)] INFO : Starting the New Relic agent in "development" environment.
+[12/04/13 10:30:00 +0800 jeffrey-PC (6700)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "development" section of your newrelic.yml.
+[12/04/13 10:30:00 +0800 jeffrey-PC (6700)] INFO : Reading configuration from 
+[12/04/13 10:30:00 +0800 jeffrey-PC (6700)] ERROR : Unable to read configuration file : Is a directory - d:/apps/comforthouse/lib/tasks
+[12/04/13 10:30:00 +0800 jeffrey-PC (6700)] INFO : Enabling the Request Sampler.
+[12/04/13 10:30:00 +0800 jeffrey-PC (6700)] INFO : Enabling the Request Sampler.
+[12/04/13 10:30:00 +0800 jeffrey-PC (6700)] INFO : Environment: development
+[12/04/13 10:30:00 +0800 jeffrey-PC (6700)] INFO : Dispatcher: thin
+[12/04/13 10:30:00 +0800 jeffrey-PC (6700)] INFO : Application: development
+[12/04/13 10:30:00 +0800 jeffrey-PC (6700)] WARN : No license key found in newrelic.yml config. This often means your newrelic.yml is missing a section for the running environment 'development'
+[12/04/13 10:30:00 +0800 jeffrey-PC (6700)] INFO : Installing ActiveRecord 4 instrumentation
+[12/04/13 10:30:00 +0800 jeffrey-PC (6700)] INFO : Installing Net instrumentation
+[12/04/13 10:30:00 +0800 jeffrey-PC (6700)] INFO : Installing deferred Rack instrumentation
+[12/04/13 10:30:00 +0800 jeffrey-PC (6700)] INFO : Installing Sidekiq instrumentation
+[12/04/13 10:30:00 +0800 jeffrey-PC (6700)] INFO : Installing Rails 4 Controller instrumentation
+[12/04/13 10:30:00 +0800 jeffrey-PC (6700)] INFO : Installing Rails 4 view instrumentation
+[12/04/13 10:30:00 +0800 jeffrey-PC (6700)] INFO : Installing Rails4 Error instrumentation
+[12/04/13 10:30:00 +0800 jeffrey-PC (6700)] INFO : Finished instrumentation
+[12/04/13 10:30:00 +0800 jeffrey-PC (6700)] WARN : Failed to determine processor count, assuming 1
+[12/04/13 10:30:17 +0800 jeffrey-PC (4424)] INFO : Starting the New Relic agent in "development" environment.
+[12/04/13 10:30:17 +0800 jeffrey-PC (4424)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "development" section of your newrelic.yml.
+[12/04/13 10:30:17 +0800 jeffrey-PC (4424)] INFO : Reading configuration from 
+[12/04/13 10:30:17 +0800 jeffrey-PC (4424)] ERROR : Unable to read configuration file : Is a directory - d:/apps/comforthouse/lib/tasks
+[12/04/13 10:30:17 +0800 jeffrey-PC (4424)] INFO : Enabling the Request Sampler.
+[12/04/13 10:30:17 +0800 jeffrey-PC (4424)] INFO : Enabling the Request Sampler.
+[12/04/13 10:30:17 +0800 jeffrey-PC (4424)] INFO : Environment: development
+[12/04/13 10:30:17 +0800 jeffrey-PC (4424)] INFO : Dispatcher: thin
+[12/04/13 10:30:17 +0800 jeffrey-PC (4424)] INFO : Application: development
+[12/04/13 10:30:17 +0800 jeffrey-PC (4424)] WARN : No license key found in newrelic.yml config. This often means your newrelic.yml is missing a section for the running environment 'development'
+[12/04/13 10:30:17 +0800 jeffrey-PC (4424)] INFO : Installing ActiveRecord 4 instrumentation
+[12/04/13 10:30:17 +0800 jeffrey-PC (4424)] INFO : Installing Net instrumentation
+[12/04/13 10:30:17 +0800 jeffrey-PC (4424)] INFO : Installing deferred Rack instrumentation
+[12/04/13 10:30:17 +0800 jeffrey-PC (4424)] INFO : Installing Sidekiq instrumentation
+[12/04/13 10:30:17 +0800 jeffrey-PC (4424)] INFO : Installing Rails 4 Controller instrumentation
+[12/04/13 10:30:17 +0800 jeffrey-PC (4424)] INFO : Installing Rails 4 view instrumentation
+[12/04/13 10:30:17 +0800 jeffrey-PC (4424)] INFO : Installing Rails4 Error instrumentation
+[12/04/13 10:30:17 +0800 jeffrey-PC (4424)] INFO : Finished instrumentation
+[12/04/13 10:30:17 +0800 jeffrey-PC (4424)] WARN : Failed to determine processor count, assuming 1

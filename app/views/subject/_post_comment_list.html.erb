@@ -1,0 +1,27 @@
+<h2 class="pdT20" id="comments">网友评论</h2>
+<div class="commentlist">
+<% if comments and comments.length > 0 %>
+  <% avatars,rescue_avatars = comments[:avatars],comments[:rescue_avatars] %>
+  <% comments[:list].each do |c| %>
+  <% avatar_path,rescue_avatar = avatars[c.uid],rescue_avatars[c.uid] %>
+  <div class="comment" id="comment-<%= c.id %>">
+    <div class="comment-body">
+      <div class="comment-author vcard">
+        <a class="avatar-link" href="/<%= c.uid %>">
+          <img src="<%= avatar_path %>" rescue="<%= rescue_avatar %>" class="avatar avatar-48 photo" height="48" width="48" alt=""></a>
+        <cite class="fn">
+          <a class="up" href="/<%= c.uid %>"><%= c.nickname %></a>
+        </cite>
+        <span class="says"></span>
+      </div>
+      <div class="comment-meta commentmetadata"><%= c.created_at.strftime('%Y年%m月%d日 %H:%M') %></div>
+      <p><%= simple_format(c.content) %></p>
+    </div>
+    <div class="reply-to" style="display:none;">
+      <a class="down" href="javascript:;">回复</a>
+    </div>
+  </div>
+  <% end %>
+  <%= paginate comments[:list],theme:'remote',event:'load_comments(this);' %>
+<% end %>
+</div>

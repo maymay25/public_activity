@@ -1,0 +1,18 @@
+<script type="text/javascript">
+
+var opr = window.opener;
+
+if(opr){
+	try{
+		opr.oauth2_callback(<%= success %>,"<%= CGI.unescapeHTML(txt) %>","<%= style %>");
+	}catch(err){
+	  txt="登录失败\n\n"
+	  txt+="错误描述：" + err+ "\n\n"
+	  txt+="点击“确定”继续。\n\n"
+	  alert(txt);
+	  window.close();
+  }
+}else{
+	window.location.href="/";
+}
+</script>

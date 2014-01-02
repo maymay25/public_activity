@@ -1,0 +1,36 @@
+<div class="subject_wrap">
+  <div class="container">
+
+    <div class="content">
+  
+      <div class="ui message">
+        共有 <span class="up"><%= @subject_followers_sum %></span> 位用户订阅了 <a class="down" href="/subject/<%= @subject.identify %>"><%= @subject.title %></a> 专题
+      </div>
+      <div class="followers_module">
+      <% @subject_followers.each do |user| %>
+      <div class="item">
+        <a class="none" href="/<%= user.id %>">
+          <img alt="" src="<%= user.avatar_path.normal.url %>">
+        </a>
+        <a class="name none" href="/<%= user.id %>"><%= user.nickname %></a>
+      </div>
+      <% end %>
+      </div>
+      <div class="pagination_wrap">
+        <%= paginate @follower_relations,inner_window:3,outer_window:1 %>
+      </div>
+
+    </div>
+
+    <%= render partial:'subject_sidebar' %>
+    
+  </div>
+</div>
+
+<% content_for :head do %>
+<link href="<%= static_url "/assets/css/semantic/collections/message.css" %>" rel="stylesheet">
+<% end %>
+
+<% content_for :bodyScript do %>
+<script src="<%= static_url "/assets/js/view/page.subject.js" %>"></script>
+<% end %>

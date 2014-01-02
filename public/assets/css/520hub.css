@@ -1,0 +1,319 @@
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td {
+margin: 0;
+padding: 0;
+}
+body, input, button, select, textarea, th, td {
+font-size: 12px;
+line-height: 1.5;
+font-family: tahoma,arial,sans-serif;
+color: #666;
+}
+:focus {
+outline: 0;
+}
+
+a:link, a:visited {
+text-decoration: none;
+color: #5678a0;
+}
+
+/* content  */
+#content {
+_height: 420px;
+min-height: 420px;
+margin: 0 auto;
+padding-bottom: 24px;
+width: 960px;
+margin: 0 auto;
+background-color: #fff;
+}
+
+
+/***************************************************************************/
+/* header (start) */
+/***************************************************************************/
+
+#header {
+margin-bottom: 24px;
+height: 102px;
+z-index: 9999;
+}
+.nbar {
+position: relative;
+top: 0;
+left: 0;
+width: 100%;
+height: 70px;
+z-index: 998;
+}
+.forbg {
+position: relative;
+width: 100%;
+height: 64px;
+background-color: #FFF;
+z-index: 998;
+}
+.nav {
+}
+.inbar, .nav {
+margin: 0 auto;
+width: 960px;
+}
+.nav #logo, .nav h3, .menu {
+float: left;
+}
+.nav #logo a:link, .nav #logo a:visited, .nav h3 a:link, .nav h3 a:visited {
+display: block;
+width: 80px;
+height: 64px;
+background-position: 0 14px;
+text-indent: -9999px;
+}
+.nav #logo a:link, .nav #logo a:visited, .nav h3 a:link, .nav h3 a:visited {
+display: block;
+width: 80px;
+height: 64px;
+background-position: 0 14px;
+text-indent: -9999px;
+}
+
+.menu {
+margin-left: 40px;
+}
+.nav #logo, .nav h3, .menu {
+float: left;
+}
+.menu a:link, .menu a:visited {
+float: left;
+margin: 0 6px;
+padding: 18px 4px 19px;
+color: #606060;
+font-size: 18px;
+font-family: '微软雅黑E\8F6F\96C5\9ED1';
+}
+.menu a:link, .menu a:visited {
+float: left;
+margin: 0 6px;
+padding: 18px 4px 19px;
+color: #606060;
+font-size: 18px;
+font-family: '微软雅黑E\8F6F\96C5\9ED1';
+}
+a:link, a:visited {
+text-decoration: none;
+color: #5678a0;
+}
+a:link, a:visited {
+color: #5678a0;
+text-decoration: none;
+}
+.menu i {
+float: left;
+margin: 25px 12px 0;
+width: 1px;
+height: 12px;
+background-position: -96px 0;
+text-indent: -9999px;
+}
+.toreg a, .sites a, #m-r, #m-reg, .menu i, .hd-com b, .hd-sc a i, .prof ul i, .nav #logo a, .nav h3 a, .search button {
+background-image: url("../../../../img/0/head.png?20130125");
+background-repeat: no-repeat;
+}
+em, i, u {
+font-style: normal;
+text-decoration: none;
+}
+.menu a:hover {
+text-decoration: none;
+color: #F14382;
+}
+.menu a.m:link, .menu a.m:visited {
+margin: 0 6px;
+padding: 20px 4px;
+font-size: 16px;
+}
+.search {
+position: relative;
+float: right;
+margin-top: 17px;
+width: 222px;
+border: 1px solid #D4D4D4;
+}
+.search i {
+position: absolute;
+top: 5px;
+left: 6px;
+display: none;
+color: #B4B4B4;
+}
+.search input {
+padding: 7px 0 7px 6px;
+width: 184px;
+height: 14px;
+line-height: 14px;
+border: 0 none;
+display: block;
+color: #B4B4B4;
+}
+.search button {
+right: 0;
+width: 32px;
+height: 28px;
+background-position: -110px -125px;
+border: none;
+text-indent: -9999px;
+cursor: pointer;
+border: 0 none;
+}
+.search button {
+position: absolute;
+top: 0;
+}
+.search .srchsel {
+position: absolute;
+top: 28px;
+left: -1px;
+display: none;
+border: 1px solid #D4D4D4;
+background-color: #FFF;
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+}
+
+.toreg a, .sites a, #m-r, #m-reg, .menu i, .hd-com b, .hd-sc a i, .prof ul i, .nav #logo a, .nav h3 a, .search button {
+background-image: url("http://cdn.duitang.com/img/0/head.png?20130125");
+background-repeat: no-repeat;
+}
+.forbg {
+position: relative;
+width: 100%;
+height: 64px;
+background-color: #FFF;
+z-index: 998;
+}
+.forbd, .forld {
+width: 100%;
+background-color: #000;
+font-size: 0px;
+line-height: 0px;
+}
+.forbd {
+height: 1px;
+opacity: 0.08;
+filter: alpha(opacity=8);
+}
+.forld {
+height: 5px;
+opacity: 0.02;
+filter: alpha(opacity=2);
+}
+
+/***************************************************************************/
+/* header (end) */
+/***************************************************************************/
+
+
+
+/***************************************************************************/
+/* footer (start) */
+/***************************************************************************/
+
+#footer {
+overflow: hidden;
+margin: 0 auto;
+}
+.footeridx .realfoot {
+margin-left: auto;
+margin-right: auto;
+background-color: #FBFBFB;
+color: #999;
+}
+.realfoot {
+margin-left: auto;
+margin-right: auto;
+background-color: #FBFBFB;
+color: #999;
+}
+.realfoot {
+background: url('http://cdn.duitang.com/img/0/mdetail/icons.png?20130228') repeat-x 0 -354px;
+}
+.footeridx .footct {
+width: 960px;
+margin: 0 auto;
+padding: 10px 0 20px;
+}
+.footeridx .ft-us {
+float: left;
+margin: 0 0 0 -2px;
+}
+.footeridx .ft-us a {
+margin: 0 2px 0 2px;
+}
+.dgraylk a:link, .dgraylk a:visited, a.dgraylk:link, a.dgraylk:visited {
+color: #666;
+}
+
+.dgraylk a:hover, a.dgraylk:hover {
+text-decoration: underline;
+color: #f14382;
+}
+
+.redlk a:link, .redlk a:visited, a.redlk:link, a.redlk:visited {
+color: #f14382;
+}
+
+.footeridx .ft-frd {
+clear: both;
+padding: 16px 0 16px;
+}
+.footeridx .ft-frd a {
+margin: 0 8px 0 4px;
+}
+.graylk a:link, .graylk a:visited, a.graylk:link, a.graylk:visited {
+color: #bbb;
+}
+
+.graylk a:hover, a.graylk:hover {
+text-decoration: underline;
+color: #f14382;
+}
+
+.footeridx .zhengxin {
+float: right;
+width: 135px;
+height: 40px;
+margin: -12px 0 0 12px;
+background-image: url('http://cdn.duitang.com/img/0/zhengxin.gif?1');
+}
+.duitang-slogo {
+width: 34px;
+height: 18px;
+background-image: url('http://cdn.duitang.com/img/0/main.png?20120916');
+background-repeat: no-repeat;
+background-position: -400px 0;
+text-indent: -9999px;
+}
+.duitang-copy {
+width: 20px;
+height: 16px;
+background-image: url('http://cdn.duitang.com/img/0/main.png?20120916');
+background-repeat: no-repeat;
+background-position: 0 -1130px;
+text-indent: -9999px;
+}
+.dib {
+display: inline-block;
+}
+.dib {
+float: none !important;
+display: inline-block;
+display: -moz-inline-box;
+-moz-box-align: stretch;
+vertical-align: middle;
+}
+
+/***************************************************************************/
+/* footer (end) */
+/***************************************************************************/
+
+

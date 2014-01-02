@@ -1,0 +1,11 @@
+<% unless page.current? %>
+<% event ||= "javascript:;" %>
+<span>
+   <a data-page="<%= page %>" onclick="<%= event %>" href="javascript:;" rel="<%= page.next? ? 'next' : page.prev? ? 'prev' : nil %>"><%= page %></a>
+</span>
+<% else %>
+<span>
+   <strong class="on"><%= page %></strong>
+</span>
+<% end %>
+

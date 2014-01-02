@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <%= csrf_meta_tags %>
+
+	<meta charset="utf-8">
+	<title><%= @title || "520hub" %></title>
+  <link href="<%= static_url "/assets/css/520hub.css" %>" media="all" rel="stylesheet" type="text/css">
+  
+</head>
+
+
+
+<body>
+
+  <div id="header" class="header">
+    <div class="nbar" id="nbar">
+      <div class="forbg">
+        <div class="nav">
+          <div id="logo"><a href="http://www.duitang.com/">堆糖网</a></div>
+          <div class="menu">
+            <a id="m-dm" href="http://www.duitang.com/myhome/">关注动态</a>
+            <i>|</i>
+            <a id="m-z" href="http://www.duitang.com/topics/">热门</a>
+            <a id="m-l" class="m" href="http://www.duitang.com/category/life/">生活</a>
+            <a id="m-f" class="m" href="http://www.duitang.com/category/fashion/">时尚</a>
+            <a id="m-i" class="m" href="http://www.duitang.com/category/interest/">兴趣</a>
+            <i>|</i>
+            <a id="m-s" href="http://www.duitang.com/shopping/">良品购</a>
+            <a id="m-tm" class="m" href="http://www.duitang.com/shopping/temaihui/">特卖惠</a>
+            <i>|</i>
+            <a id="m-g" href="http://www.duitang.com/group/">小组</a>
+          </div>
+          <div class="search">
+            <form id="navsch" action="/search/">
+              <div class="srch">
+                <i>内容 / 商品 / 专辑 / 糖友</i>
+                <input name="kw" type="text" placeholder="内容 / 商品 / 专辑 / 糖友" autocomplete="off">
+                <input type="hidden" name="type" value="feed">
+                <button type="submit">搜索</button>
+              <div class="srchsel srchsel-0"></div></div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="forbd">&nbsp;</div>
+      <div class="forld"></div>
+    </div>
+  </div>
+
+  <div class="content" id="content">
+    <%= yield %>
+  </div>
+
+  <div id="footer" class="footeridx">
+    <div class="realfoot footcont">
+      <div class="footct">
+        <div class="ft-us dgraylk">
+          <a class="redlk" href="/about/collectit/">堆糖收集工具</a> |
+          <a href="/about/">关于我们</a> |
+          <a href="/group/topic/1778/">加入我们</a> |
+          <a href="/declare/#noduty">免责声明</a> |
+          <!--<a href="/comein/">加入我们</a> |
+          <a href="/about/collectit/">免责声明</a> |-->
+          <a id="sitehelp" href="/group/topic/17318/">帮助中心</a> |
+          <a href="/keywords/">标签集</a> | 商务合作：bd@duitang.com
+        </div>
+        <div class="ft-frd graylk">
+          友情链接：<a href="http://www.paojiao.cn/" target="_blank">泡椒网</a>
+          <a href="http://sh.soufun.com/" target="_blank">上海房产网</a>
+          <a href="http://www.1626.com" target="_blank">1626</a>
+          <a href="http://news.hiapk.com" target="_blank">安卓新闻</a>
+          <a href="http://info.china.alibaba.com" target="_blank">阿里巴巴商业资讯</a>
+          <a href="http://www.poluoluo.com" target="_blank">破洛洛</a>
+          <a href="http://www.68design.net" target="_blank">网页设计师联盟</a>
+          <a href="http://photo.poco.cn/" target="_blank">POCO摄影网</a>
+          <a href="http://www.douguo.com/" target="_blank">豆果网</a>
+          <a href="http://guang.com/" target="_blank">逛</a>
+          <a href="http://www.1616.net/" target="_blank">1616个人门户</a>
+          <a href="http://www.enterdesk.com" target="_blank">桌面壁纸</a>
+          <a href="http://www.ladymax.cn" target="_blank">LADYMAX时尚网</a>
+          <a href="http://hair.onlylady.com/" target="_blank">女人志靓发</a>
+          <a href="http://www.rouding.com/" target="_blank">肉丁网</a>
+          <a href="http://www.app111.com/" target="_blank">苹果游戏</a>
+          <a href="http://beauty.haxiu.com/" target="_blank">哈秀时尚网美容</a>
+          <a href="http://www.mumayi.com/" target="_blank">木蚂蚁</a>
+          <a href="http://www.hers.com.cn/" target="_blank">爱物网</a>
+          <a href="http://www.nb5.cn" target="_blank">牛站长论坛</a>
+          <a href="http://www.jz123.cn" target="_blank">站长家园</a>
+          <a href="http://www.eastlady.cn" target="_blank">东方女性网</a>
+          <a href="http://www.xfwed.com/" target="_blank">婚纱摄影</a>
+          <a href="http://www.bianzhirensheng.com/" target="_blank">编织人生</a>
+          <a href="http://fashion.lady8844.com/" target="_blank">爱美网奢华</a>
+          <a href="http://www.faxingw.cn/" target="_blank">发型设计</a>
+          <a href="http://www.ijie.com/" target="_blank">爱结婚礼</a>
+          <a href="http://www.s.cn/" target="_blank">名鞋库</a>
+          <a href="http://www.hunantv.com/" target="_blank">金鹰网</a>
+          <a href="http://www.91pdf.com" target="_blank">pdf阅读器</a>
+          <a href="http://www.baileyu.com/" target="_blank">百乐鱼</a>
+          <a href="http://life.iqiyi.com/" target="_blank">爱奇艺生活</a>
+          <a href="http://ichuanyi.com" target="_blank" title="穿衣助手-最热闹的搭配社区，最权威的搭配指南">穿衣助手</a>
+          <a href="http://www.10and9.com/" target="_blank" title="美食美酒网">美食美酒网</a>
+          <a href="http://www.ellechina.com" target="_blank" title="ELLE中文网">ELLE中文网</a>
+          <a href="http://www.marieclairechina.com/" target="_blank" title="嘉人网">嘉人网</a>
+          <a href="http://www.tickets.com.cn/" target="_blank">一票通</a>
+          <a href="http://cosme.pclady.com.cn/" target="_blank">化妆品</a>
+        </div>
+        <div>
+          <a class="zhengxin" target="_blank" href="http://www.zx110.org/"></a>
+          ©Copyright by <u class="dib duitang-slogo">堆糖</u> 2010-2013 duitang.com, all rights reserved
+          <div class="dib duitang-copy"><a class="txt" href="/mblogdetails/index.html">索引</a>备案</div>沪ICP备<a href="http://www.miitbeian.gov.cn" target="_blank">05034519</a>号
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

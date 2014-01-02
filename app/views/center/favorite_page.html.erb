@@ -1,0 +1,63 @@
+<div class="center_wrap">
+
+  <%= render partial:'basic_info' %>
+
+  <div class="container">
+
+    <div class="layout_wrap">
+      
+      <div class="ihome_hot_feed ihome_section">
+        <h1 class="threadList_title"><span class="cut_line">|</span><%= user_mark @u %>喜欢的文章</h1>
+        <% if @favorite_posts and @favorite_posts.length>0 %>
+          <ul class="new_list clearfix">
+            <% @favorite_posts.each_with_index do |f,index| %>
+            <% subject = @subjects[f.subject_id] %>
+            <div class="n_right clearfix <%= 'n_right_first' if index.zero? %>">
+              <div class="n_post_time"><%= feed_time f.created_at %></div>
+              <div class="n_avatar">
+                <a href="/subject/<%= subject.identify %>">
+                  <img src="<%= subject.cover_path.normal.url %>">
+                </a>
+              </div>
+              <div class="n_contain">
+                <div>
+                  <div class="thread_name">
+                    <a href="/subject/<%= f.subject_identify %>/<%= f.post_id %>" target="_blank" class="title down" title="<%= f.post_title %>"><%= f.post_title %></a>
+                  </div>
+                </div>
+                <div class="n_txt">
+                  <% if f.content_type==SubjectPost::TYPE[:video] or f.content_type==SubjectPost::TYPE[:audio] %>
+                  <div><%= sanitize_embed_summary(f.embed_summary).html_safe %></div>
+                  <% end %>
+                  <div><%= truncate(f.summary,length:150){ link_to " 查看全文", "/subject/#{f.subject_identify}/#{f.post_id}", class:'down' } %></div>
+                </div>
+                <div class="n_reply">
+                  <a href="/subject/<%= subject.identify %>" class="post_author grey2"><%= subject.title %></a>
+                  <span class="userinfo_split"></span>
+                  <a href="/subject/<%= f.subject_identify %>/<%= f.post_id %>" class="post_num grey2"><%= f.created_at.strftime("%Y-%m-%d") %></a>
+                </div>
+              </div>
+            </div>
+            <% end %>
+          </ul>
+        <% elsif params[:page].to_i <= 1 %>
+          <div class="empty_notice">
+            <%= user_mark @u,'' %>没有喜欢的文章
+          </div>
+        <% end %>
+      </div>
+
+      <div class="pagination_wrap">
+        <%= paginate @favorite_posts,inner_window:3,outer_window:1 %>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<% content_for :bodyScript do %>
+<script src="<%= static_url "/assets/js/view/page.center.js" %>"></script>
+<% end %>
+
+

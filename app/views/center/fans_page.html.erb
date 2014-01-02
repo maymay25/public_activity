@@ -1,0 +1,44 @@
+<div class="center_wrap">
+
+  <%= render partial:'basic_info' %>
+
+  <div class="layout_wrap">
+    <div class="container">
+      <div class="ihome_forum_group ihome_section clearfix">
+          <h1 class="ihome_title">
+            <span class="cut_line">|</span><%= user_mark @u %>的粉丝
+          </h1>
+          <div class="clearfix u-f-wrap mgT10">
+            <div class="followers_module">
+            <% if @fans_users and @fans_users.length > 0 %>
+              <% @fans_users.each do |user| %>
+              <div class="item">
+                <a class="none" href="/<%= user.id %>">
+                  <img alt="" src="<%= user.avatar_path.normal.url %>">
+                </a>
+                <a class="name none" href="/<%= user.id %>"><%= user.nickname %></a>
+              </div>
+              <% end %>
+            <% else %>
+              <div class="empty_notice">
+                <%= user_mark @u,'' %>还没有粉丝
+              </div>
+            <% end %>
+            </div>
+          </div>
+      </div>
+
+      <div class="pagination_wrap">
+        <%= paginate @follow_relations,inner_window:3,outer_window:1 %>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<% content_for :bodyScript do %>
+<script src="<%= static_url "/assets/js/view/page.center.js" %>"></script>
+<% end %>
+
+

@@ -1,0 +1,120 @@
+<div class="subject_wrap">
+  <div class="container">
+
+    <div class="content">
+
+      <div class="post mgB20">
+        <h2><%= @post.title %></h2>
+
+        <div class="entry">
+          <%= @post.content.html_safe %>
+        </div>
+        <div class="share-fave">
+          <div class="meta fr">
+            <a class="none <%= 'already' if @is_favorite %>" href="javascript:;" onclick="javascript:switch_favorite(this);" id="favorite_btn" data-post-id="<%= @post.id %>">
+              <span class="remove">已经喜欢</span>
+              <span class="add">喜欢</span>
+              <sup class="num" title='<%= "#{@post.favorite_sum}人喜欢" if @post.favorite_sum.to_i>0 %>'><%= "+#{@post.favorite_sum}" if @post.favorite_sum.to_i>0 %></sup>
+            </a>
+          </div>
+          <% if false %>
+          <div id="social-share">
+            分享到：
+            <a class="sina-share" rel="nofollow" onclick="social_share('32478','sina')" href="#" title="新浪微博"></a>
+            <a class="qq-share" rel="nofollow" onclick="social_share('32478','qq')" href="#" title="腾讯微博"></a>
+            <a class="douban-share" rel="nofollow" onclick="social_share('32478','douban')" href="#" title="豆瓣"></a>
+            <a class="kaixin001-share" rel="nofollow" onclick="social_share('32478','kaixin001')" href="#" title="开心网"></a>
+            <a class="renren-share" rel="nofollow" onclick="social_share('32478','renren发表')" href="#" title="人人网"></a>
+            <a class="qzone-share" rel="nofollow" onclick="social_share('32478','qzone')" href="#" title="QQ空间"></a>
+          </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="post_tags">
+        <span class="down">
+          <%= feed_time(@post.created_at) %>发表 • <%= @post.comment_sum.to_i %>条评论 • <%= @post.view_sum.to_i %>次浏览
+          <% if admin? %>
+           • <%= '未发布' if !@post.is_publish %>
+           • <a class="down" href="/subject_post/<%= @post.id %>/edit">编辑</a>
+           • <a class="down" href="javascript:;" onclick="javascript:destroy_post(this);" data-post-id="<%= @post.id %>">删除</a>
+          <% end %>
+        </span>
+        
+        <% if @post.tags.present? %>
+         <% post_tags = @post.tags.split(' ') %>
+         • <% post_tags.each do |tag| %><a class="tag" href="/subject<%= @subject.id %>/<%= tag %>"><span><%= tag %></span></a><% end %>
+        <% end %>
+      </div>
+
+      <% if @pre_post or @next_post %>
+      <div class="article-navigation clearfix">
+        <% if @pre_post %>
+        <div class="alignleft">
+          上一篇：
+          <a class="down" href="/subject/<%= @pre_post.subject_identify %>/<%= @pre_post.id %>" title="<%= @pre_post.title %>">
+            <%= @pre_post.title.truncate(14) %>
+          </a>
+        </div>
+        <% end %>
+
+        <% if @next_post %>
+        <div class="alignright">
+          下一篇：
+          <a class="down" href="/subject/<%= @next_post.subject_identify %>/<%= @next_post.id %>" title="<%= @next_post.title %>">
+            <%= @next_post.title.truncate(14) %>
+          </a>
+        </div>
+        <% end %>
+      </div>
+      <% end %>
+
+      <h2 class="pdT20" id="respond">发表评论</h2>
+      <div class="respond_box pdB5 clr">
+        <div id="commentform">
+          <p class="note" id="reply-message">
+            <label>回复给 <span class='up' id="reply-nickname">网友</span></label>
+            <span class="right">
+              <a class="up" id="cancel-comment-reply-link" title="取消" href="javascript:;">X</a>
+              <input type="hidden" name="comment_parent" id="comment_parent" value="">
+            </span>
+          </p>
+          <div class="commentbox mgT5">
+            <a class="avatar-link" href="http://www.mihuwa.com/user/jeffrey6052/">
+              <img alt="" src="http://mihoo.b0.upaiyun.com/default-avatar-32x32.png" class="avatar avatar-32 photo avatar-default" height="32" width="32" original="http://mihoo.b0.upaiyun.com/default-avatar-32x32.png" style="display: block;">
+            </a>
+            <div class="placeholding-input">
+              <textarea name="comment_content" class="text-input" id="comment_content"></textarea>
+              <label for="comment_content" class="placeholder">在这里畅所欲言...</label>
+            </div>
+          </div>
+          <div>
+            <input type="button" id="comment_submit" value="发表评论" onclick="javascript:add_new_comment();">
+          </div>
+        </div>
+      </div>
+
+      <div id="commentlist">
+        <% if @post_comments[:list].length > 0 %>
+          <%= render partial:'post_comment_list',locals:{comments:@post_comments} %>
+        <% end %>
+      </div>
+
+    </div>
+  
+    <%= render partial:'subject_sidebar' %>
+  
+  </div>
+</div>
+
+<% content_for :bodyScript do %>
+
+  <script>
+  app_config['post_id'] = '<%= @post.id %>';
+  </script>
+
+  <script src="<%= static_url "/assets/js/view/page.subject.js" %>"></script>
+
+<% end %>
+
+

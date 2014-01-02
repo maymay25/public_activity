@@ -1,0 +1,57 @@
+<div class="subject_wrap">
+  <div class="container">
+
+    <div class="content">
+      <% video_sum = 0 #页面上只保留一个视频 %>
+      <% @posts.each do |post| %>
+
+      <div class="article">
+        <h2><a class="up" href="/subject/<%= @subject.identify %>/<%= post.id %>"><%= post.title %></a></h2>
+        <div class="author-info">
+          <%= feed_time(post.created_at) %>
+          <% if admin? %>
+           • <%= '未发布' if !post.is_publish %>
+           • <a class="down" href="/subject_post/<%= post.id %>/edit">编辑</a>
+           • <a class="down" href="javascript:;" onclick="javascript:destroy_post(this);" data-post-id="<%= post.id %>">删除</a>
+          <% end %>
+           • <%= post.comment_sum.to_i %>条评论
+           • <%= post.view_sum.to_i %>次浏览
+          <% if post.tags.present? %>
+           <% post_tags = post.tags.split(' ') %>
+           • <% post_tags.each do |tag| %><a class="tag" href="/subject<%= @subject.id %>/<%= tag %>"><span><%= tag %></span></a><% end %>
+          <% end %>
+        </div>
+        <div class="read">
+          <% if post.content_type!=SubjectPost::TYPE[:video] and post.cover_path.big.url %>
+          <div class="left">
+            <a href="/subject/<%= @subject.identify %>/<%= post.id %>" class="pic" style="background-image:url(<%= post.cover_path.big.url %>);" alt=""></a>
+          </div>
+          <% end %>
+          <div class="right">
+            <% if post.content_type==SubjectPost::TYPE[:video] and video_sum < 1 %>
+            <% video_sum += 1 %>
+            <p><%= sanitize_embed_summary(post.embed_summary).html_safe %></p>
+            <% elsif post.content_type==SubjectPost::TYPE[:audio] %>
+            <p><%= sanitize_embed_summary(post.embed_summary).html_safe %></p>
+            <% end %>
+            <p><%= truncate(post.summary,length:170){ link_to "(查看全文)", "/subject/#{@subject.identify}/#{post.id}", class:'down' } %></p>
+          </div>
+        </div>
+      </div>
+
+      <% end %>
+
+      <div class="pagination_wrap">
+        <%= paginate @posts,inner_window:3,outer_window:1 %>
+      </div>
+
+    </div>
+
+    <%= render partial:'subject_sidebar' %>
+    
+  </div>
+</div>
+
+<% content_for :bodyScript do %>
+<script src="<%= static_url "/assets/js/view/page.subject.js" %>"></script>
+<% end %>

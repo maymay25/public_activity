@@ -1,0 +1,9 @@
+<% unless page.current? %>
+    <span>
+        <%= link_to page, url, opts = {:rel => page.next? ? 'next' : page.prev? ? 'prev' : nil} %>
+    </span>
+<% else %>
+    <span>
+        <strong class="on"><%= page %></strong>
+    </span>
+<% end %>

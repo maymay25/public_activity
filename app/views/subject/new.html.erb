@@ -1,0 +1,45 @@
+
+<div class="subject_wrap">
+  <div class="container">
+
+    <div class="content">
+			<form action="/subject/create" id="subject_form" method="post" enctype="multipart/form-data">
+				<div class="pd5">
+					标题(中文):
+					<input type="text" id="subject_title" name="title">
+				</div>
+
+				<div class="pd5">
+					标示名(英文，数字，下划线):
+					<input type="text" id="subject_identify" name="identify">
+				</div>
+
+				<div class="pd5">
+					封面：
+					<input type="file" name="cover_path" >
+				</div>
+
+				<div class="pd5">
+					简介:
+					<input type="text" id="subject_intro" name="intro">
+				</div>
+
+				<input type="button" id="submit_subject" value="发布" onclick="javascript:return false;">
+			</form>
+		
+    </div>
+
+
+  </div>
+</div>
+
+<script>
+	require(['jquery'],function($){
+		$("#submit_subject").bind('click',function(){
+
+	    $("#subject_form").submit();
+
+		})
+	})
+
+</script>

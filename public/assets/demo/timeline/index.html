@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta  charset="utf-8" />
+    <title>TimeLine</title>
+    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" />
+    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" />
+    <link rel="stylesheet" href="css/timeline.css" />
+</head>
+<body>
+<div id="timeline" class="tl-container"></div>
+<ul class="tl-navigator" id="timeline-nav"></ul>
+<script id="tl_block_tpl" type="text/template">
+    {{#each block}}
+    <div class="tl-block" id="tl-header-{{#if month}}{{month}}{{else}}{{year}}{{/if}}">
+        <div class="tl-hd"><h3>{{key}}</h3></div>
+        <ol class="tl-bd tl-clear">
+            <li aria-hidden="true" class="tl-spine"><a href="#"><i data-action="doAdd"></i></a></li>
+        </ol>
+    </div>
+    {{else}}
+    <div class="tl-block">
+        <div class="tl-ft tl-loading" data-action="doLike"></div>
+    </div>
+    {{/each}}
+</script>
+<script id="tl_unit_tpl" type="text/template">
+            <li class="tl-unit {{#if _column }}tl-unit-{{_column}}{{/if}}" data-id="{{id}}">
+                <div class="tl-unit-content tl-unit-custom">
+                    <!-- unit content custom START -->
+                    {{#if title}}<p class="title">{{title}}</p>{{/if}}
+                    {{#if img_url}}<p class="pic"><img src="{{img_url}}" style="width: {{_img_width}}px;height: {{_img_height}}px;" /></p>{{/if}}
+                    {{#if desc}}<p class="desc">{{desc}}</p>{{/if}}
+                    <p class="meta"><span data-action="doLike">喜欢</span><span class="dot">&dot;</span><span data-action="doComment">评论</span></p>
+                    <!-- unit content custom END -->
+                </div>
+                <b class="tl-unit-arrow"><i></i></b>
+                <b class="tl-unit-bullet"></b>
+            </li>
+            <!-- todo -->
+</script>
+<script id="tl_navigator_tpl" type="text/template">
+    {{#each block}}
+        <li><a href="#tl-header-{{#if month}}{{month}}{{else}}{{year}}{{/if}}">{{key}}</a>
+        {{#if children}}
+            <ul>
+                <li data-key="{{key}}"><a href="#">{{key}}</a></li>
+            </ul>
+        {{/if}}
+        </li>
+    {{/each}}
+</script>
+<script src="http://assets.spmjs.org/seajs/seajs/2.1.1/sea.js"></script>
+<script>
+    (function() {
+        seajs.config({
+            alias: {
+                "$": "jquery/jquery/1.10.1/jquery",
+                "base": "arale/base/1.1.1/base",
+                "handlebars": "gallery/handlebars/1.0.2/handlebars",
+                "underscore": "gallery/underscore/1.4.4/underscore"
+            }
+        });
+        seajs.use(["./js/timeline"], function(TL) {
+            new TL({
+                "container": "#timeline",
+                "navContainer": "#timeline-nav",
+                "blockTemplate": "#tl_block_tpl",
+                "unitTemplate": "#tl_unit_tpl",
+                "navTemplate": "#tl_navigator_tpl",
+                "orderBy": "month",
+                "imgWidth": 357,
+                "dataUrl": "./"+(window.location.search.slice(1)||"data")+".js"
+            })
+        });
+    })();
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+
+<% mega_active = "#{params[:controller]}##{params[:action]}" %>
+
+ <!-- MAIN NAVIGATION -->
+<div id="header-container">
+	<div class="container">
+
+		<div id="logo"></div>
+
+		<a class="link_root" href='javascript:;'>随心社区</a>
+
+		<div class="account" id="accountInfo">
+			<% if signed_in? %>
+					<span href="javascript:;"><%= @current_user.nickname.truncate(12) %></span>
+					<a href="/signout">退出</a>
+			<% else %>
+					<a href="javascript:;" onclick="javascript:signIn();">登录</a>
+			<% end %>
+		</div>
+
+	</div>
+</div>

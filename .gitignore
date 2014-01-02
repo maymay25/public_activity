@@ -3,7 +3,6 @@
 .sass-cache
 capybara-*.html
 .rspec
-.rvmrc
 /.bundle
 /vendor/bundle
 /log/*
@@ -15,5 +14,6 @@ capybara-*.html
 **.orig
 rerun.txt
 pickle-email-*.html
-.project
-config/initializers/secret_token.rb
+/db/log/*
+/public/assets/uploads/*
+/public/uploads/tmp/*

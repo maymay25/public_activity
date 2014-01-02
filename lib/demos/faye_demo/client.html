@@ -1,0 +1,85 @@
+﻿
+<html>
+<head>
+<script type="text/javascript"  src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
+<script type="text/javascript"  src="http://localhost:9292/faye/client.js" ></script>
+
+<script type="text/javascript">
+
+    var client = new Faye.Client('http://localhost:9292/faye');
+
+    var subscription = client.subscribe('/foo', function(message) {
+      $("#messages").append("<li>"+message.text+"</li>")
+    });
+
+    // subscription.callback(function() {
+    //   alert('Subscription is now active!');
+    // });
+
+    subscription.errback(function(error) {
+      alert(error.message);
+    });
+
+    // subscription.callback(function() {
+    //   alert('Subscription is now active!');
+    // });
+
+    // subscription.errback(function(error) {
+    //   alert(error.message);
+    // });
+
+    function send(text){
+
+        if (!text || $.trim(text) == ""){
+            return
+        }
+
+        var publication = client.publish('/foo', {text: text});
+
+        // publication.callback(function() {
+        //   alert('Message received by server!');
+        // });
+
+        publication.errback(function(error) {
+          alert('There was a problem: ' + error.message);
+        });
+    }
+
+
+    $(function(){
+
+        $("#send_button").bind("click",function(){
+            var text = $("#text").val();
+            send(text);
+        })
+
+    })
+
+  
+</script>
+
+
+</head>
+<body>
+
+<h1>test faye</h1>
+
+<div>
+
+<p>
+
+    <input type="text" id="text" placeholder="请输入内容"></input>
+    <button id="send_button">发送</button>
+</p>
+
+<ul id="messages">
+
+
+</ul>
+
+</div>
+
+
+</body>
+
+</html>

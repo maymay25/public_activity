@@ -1,0 +1,244 @@
+<div class="center_wrap">
+
+  <%= render partial:'/center/basic_info' %>
+
+  <div class="layout_wrap">
+    <div class="container">
+      <div class="ihome_forum_group ihome_section clearfix">
+          <h1 class="ihome_title">
+            <span class="cut_line">|</span>私信
+          </h1>
+          <div class="clearfix u-f-wrap mgT10"> 
+              <div class="all_msg_list">
+                <% @linkmans.each do |l| %>
+                <% user = @users[l.to_uid]
+                   next if user.nil?
+                %>
+                <div class="WB_msg_type link" href="/my/message/history?uid=<%= user.id %>">
+                  <div class="msg_list_node S_line2 clearfix">
+                    <div class="id_avatar">
+                      <img src="<%= user.avatar_path.normal.url %>" rescue="<%= user.avatar_path.normal.default_url %>" width="50" height="50">
+                    </div>
+                    <div class="msg_main">
+                      <div class="W_f14 W_fb msg_title">
+                        <%= user.nickname %>：
+                      </div>
+                      <% if l.no_read_count>0 %>
+                      <div class="msg_new_state">
+                        <em class="W_new_count"><%= l.no_read_count>99 ? '99+' : l.no_read_count %></em>
+                      </div>
+                      <% end %>
+                      <div class="W_f14 msg_detail S_txt2">
+                        <%= simple_format l.last_chat_content %>
+                      </div>
+                    </div>
+                    <div class="msg_ctrls">
+                      <span class="S_txt2"><%= l.last_chat_at.strftime("%m月%d日 %H:%M") %></span>
+                    </div>
+                  </div>
+                </div>
+                <% end %>
+              </div> 
+          </div>
+      </div>
+
+      <div class="pagination_wrap">
+        <%= paginate @linkmans,inner_window:3,outer_window:1 %>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<% content_for :bodyScript do %>
+<script src="<%= static_url "/assets/site2/page.center.js" %>"></script>
+<% end %>
+
+
+<style>
+textarea {
+resize: none;
+}
+.S_line2 {
+border-color: #e6e6e6;
+}
+.S_txt2 {
+color: #808080;
+}
+.S_txt3 {
+color: #aeaeae;
+}
+.S_line1_c {
+color: #e0d7bf;
+}
+.S_line2_c {
+color: #e6e6e6;
+}
+.S_bg1_c {
+color: #f2f2f2;
+}
+.S_bg5 {
+background-color: #ffffff;
+}
+.S_bg5_c {
+color: #ffffff;
+}
+.S_line1 {
+border-color: #e0d7bf;
+}
+.S_bg1, a.W_gotop, .SW_fun_bg {
+background-color: #f2f2f2;
+}
+.W_f14 {
+font-size: 14px;
+}
+.W_fb {
+font-weight: 700;
+}
+
+
+fieldset {
+display: block;
+padding: 0 0 0 20px;
+border-style: solid;
+border-width: 1px 0 0 0;
+}
+
+fieldset legend {
+padding: 0 5px;
+font-weight: bold;
+}
+
+.icon_choose {
+background-position: -75px -75px;
+}
+.icon_choose:hover {
+background-position: -100px -75px;
+}
+.W_ico12 {
+display: inline-block;
+width: 12px;
+height: 12px;
+background-image: url("http://img.t.sinajs.cn/t5/style/images/common/icon.png?id=1383793473405");
+_background-image: url("http://img.t.sinajs.cn/t5/style/images/common/icon.gif?id=1383793473405");
+background-repeat: no-repeat;
+}
+
+.all_msg_list {
+outline: none;
+width: 600px;
+}
+.WB_msg_type {
+cursor: pointer;
+_zoom: 1;
+margin-top: -1px;
+position: relative;
+padding-top: 1px;
+_position: static;
+}
+.WB_msg_type:hover {
+background:#ffffff;
+}
+
+.WB_msg_type a:hover {
+text-decoration: none;
+}
+.WB_msg_type .msg_list_node {
+border-bottom-width: 1px;
+border-bottom-style: solid;
+padding-top: 20px;
+padding-bottom: 15px;
+position: relative;
+}
+.WB_msg_type .msg_list_node:hover .msg_ctrls .W_ico12 {
+visibility: visible;
+}
+.WB_msg_type .id_avatar {
+float: left;
+width: 50px;
+height: 50px;
+position: relative;
+}
+.all_msg_list .msg_list_node {
+margin: 0 20px;
+}
+.WB_msg_type .msg_main {
+margin-left: 65px;
+height: 50px;
+overflow: hidden;
+_width: 492px;
+}
+.WB_msg_type .msg_main .msg_title {
+margin-bottom: 5px;
+}
+.WB_msg_type .msg_main .msg_detail {
+line-height: 30px;
+white-space: nowrap;
+text-overflow: ellipsis;
+overflow: hidden;
+margin-right: 2em;
+_margin-right: 0;
+_width: 463px;
+_zoom: 1;
+_float: left;
+}
+.approve_co {
+width: 16px;
+height: 14px;
+margin-left: 2px;
+background-position: -75px -6px;
+vertical-align: text-bottom;
+}
+.male, .female, .approve, .approve_co, .approve_dead, .ico_club, .ico_vlady, .ico_member, .ico_member_dis {
+display: inline-block;
+background: url("http://img.t.sinajs.cn/t5/style/images/global_nav/bg_line.png?id=1382608648268") no-repeat;
+_background: url("http://img.t.sinajs.cn/t5/style/images/global_nav/bg_line.gif?id=1382608648268") no-repeat;
+}
+.WB_msg_type .msg_ctrls {
+position: absolute;
+right: 0;
+top: 22px;
+}
+.WB_msg_type .msg_ctrls .W_ico12 {
+vertical-align: top;
+visibility: hidden;
+_visibility: visible;
+margin-left: 7px;
+}
+.WB_msg_type .msg_new_state {
+float: right;
+margin-top: 11px;
+margin-left: 5px;
+_margin-left: 0;
+width: 27px;
+text-align: right;
+}
+.W_new_count {
+display: inline-block;
+padding: 0 2px;
+font-family: arial;
+font-size: 10px;
+-webkit-transform: scale(0.875);
+background-color: #dd3838;
+color: #fff;
+border-radius: 2px;
+min-width: 11px;
+_width: 11px;
+height: 12px;
+line-height: 12px;
+text-align: center;
+}
+
+
+
+
+
+
+
+
+</style>
+
+<% content_for :bodyScript do %>
+<script src="<%= static_url "/assets/js/view/page.center.js" %>"></script>
+<% end %>

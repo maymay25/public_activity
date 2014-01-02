@@ -1,0 +1,68 @@
+<div class="basic_info">
+  <div class="headBg">
+    <div class="container relative">
+      <div class="head-info">
+        <h1 id="top_head_title" class="head-title text-shadow">
+          <span class="title-text">
+            <%= @u.nickname %>
+          </span>
+        </h1>
+        <div class="head-description">
+          <span class="description-text text-shadow">
+            年轻，就是一种态度！！ 积极进取，乐观向上！！
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="user_nav_menu">
+    <div class="container">
+      <div class="userinfo_left">
+          <div class="userinfo_head">
+            <a href="/<%= @u.id %>">
+              <img class="up" src="<%= @u.avatar_path.large.url %>" rescue="<%= @u.avatar_path.large.default_url %>">
+            </a>
+          </div>
+
+          <div class="userinfo_title" style="display:none;">
+              <a href="/<%= @u.id %>" class="userinfo_username up"><%= @u.nickname %></a>
+          </div>
+
+          <% if @current_uid!=@u.id %>
+          <div class="btn_grounps">
+            <div class="interaction_wrap interaction_wrap_theme1">
+              <a class="btn_concern <%= "already" if @is_follow %>" href="javascript:;" data-uid="<%= @u.id %>" onclick="javascript:switch_follow_user(this);"></a>
+              <a class="btn_sendmsg" href="javascript:;" data-uid="<%= @u.id %>" data-nickname="<%= @u.nickname %>" onclick="javascript:chatTo(this);"></a>
+            </div>
+          </div>
+          <% end %>
+      </div>
+      <div class="userinfo_middle">
+        <ul>
+          <li>
+            <a href="/<%= @u.id %>">主页</a>
+          </li>
+          <li class="hide">
+            <a href="javascript:;">博客</a>
+          </li>
+          <li class="hide">
+            <a href="javascript:;">说说</a>
+          </li>
+          <li>
+            <a href="/<%= @u.id %>/comment">评论</a>
+          </li>
+          <li>
+            <a href="/<%= @u.id %>/favorite">喜欢</a>
+          </li>
+          <li>
+            <a href="/<%= @u.id %>/follow">关注</a>
+          </li>
+          <li>
+            <a href="/<%= @u.id %>/fans">粉丝</a>
+          </li>
+        </ul>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+</div>

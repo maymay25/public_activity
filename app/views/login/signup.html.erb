@@ -1,0 +1,39 @@
+<link href="<%= static_url "/assets/css/login.css" %>" media="all" rel="stylesheet" type="text/css">
+
+<%= flash[:alert] %>
+<div class="auth-form" id="login">
+  <%= form_tag("/signup",enctype:'multipart/form-data') do %>
+    <div class="auth-form-header">
+        <h1>注册</h1>
+    </div>
+    <div class="auth-form-body">
+        <label for="login_field">用户名 | (仅允许字母、数字、和下划线,以字母开头)</label>
+        <input value="<%= params[:user][:username] if params[:user] %>" autocapitalize="off" class="input-block" id="login_field" name="[user]username" tabindex="1" type="text" />
+        <label for="login_field">昵称</label>
+        <input value="<%= params[:user][:nickname] if params[:user] %>" autocapitalize="off" class="input-block" id="login_field" name="[user]nickname" tabindex="1" type="text" />
+        <label for="login_field">邮箱</label>
+        <input value="<%= params[:user][:email] if params[:user] %>" autocapitalize="off" class="input-block" id="login_field" name="[user]email" tabindex="2" type="text" />
+
+        <label for="password">密码</label>
+        <input value="<%= params[:user][:password] if params[:user] %>" autocomplete="disabled" class="input-block" id="password" name="[user]password" tabindex="3" type="password" />
+
+        <label for="password">确认密码</label>
+        <input value="<%= params[:user][:password_confirmation] if params[:user] %>" autocomplete="disabled" class="input-block" id="password_confirmation" name="[user]password_confirmation" tabindex="4" type="password" />
+
+        <label for="password">上传头像</label>
+        <input class="input-block" id="avatar_path" name="avatar_path" tabindex="4" type="file" />
+        <input class="input-block" id="avatar_path" name="avatar_path_cache" tabindex="4" type="hidden" />
+
+        <input class="button" name="commit" tabindex="5" type="submit" value="注册" />
+    </div>
+
+    <div style="margin-top:5px;">
+        | 已有帐号? 
+        <a href='/signin'>直接登陆</a>
+    </div>
+
+    <div style="margin-top:5px;">
+        <a href='/login/weibo_login'>微博登陆</a>
+    </div>
+  <% end %>
+</div>

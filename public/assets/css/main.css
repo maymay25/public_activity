@@ -1,0 +1,255 @@
+
+/* 全局的样式写在这里  */
+::selection,::-moz-selection,::-webkit-selection{background:#E58994;color:#fff}
+
+* {
+margin: 0;
+padding: 0;
+border: 0;
+}
+
+.clr {
+    clear:both;
+}
+
+nav ul, nav li {
+list-style: none;
+list-style-image: none;
+}
+
+a{text-decoration:none;outline-width:0;color:#109eff;}
+
+
+a.dotted:hover{border-bottom: 1px dotted #109eff;}
+
+address, caption, cite, code, dfn, em, i, th, var {
+font-style: normal;
+font-weight: normal;
+}
+
+.fl{float:left}
+.fr{float:right}
+.fl, .fr {display: inline;}
+
+.hide {
+    display: none;
+}
+
+.link_root {
+    cursor:pointer;
+}
+
+#header {
+height:42px;
+}
+
+#main {
+margin-top:10px;
+}
+
+.block {display:block;}
+
+.container {
+clear: both;
+width: 990px;
+margin: 0 auto;
+position: relative;
+}
+
+/* 导航条 */
+#header-container {
+width: 100%;
+height: 42px;
+line-height: 42px;
+position: fixed;
+top: 0px;
+left: 0px;
+z-index: 999;
+box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
+background: url(/assets/banner_bg.png) repeat scroll 0 0 #232323;
+}
+
+#header h1 {
+color:#FF9A4A;
+margin-left:70px;
+font-size: 32px;
+font-weight: bold;
+text-align: left;
+}
+
+#header a {
+color:#999;
+-webkit-transition: color 0.2s ease-in-out;
+-moz-transition: color 0.2s ease-in-out;
+-o-transition: color 0.2s ease-in-out;
+transition: color 0.2s ease-in-out;
+}
+
+#header a:hover {
+color: white;
+}
+
+#header .center {
+float: left;
+width:220px;
+}
+
+#header nav {
+float: left;
+border-left: 1px solid #2f2f2f;
+}
+
+#header nav ul li {
+border-left: 1px solid #232323;
+border-right: 1px solid #232323;
+float: left;
+}
+
+#header nav ul li a {
+display: inline-block;
+width: 74px;
+text-align: center;
+}
+
+#header nav ul li.current a {
+background: #323232;
+}
+
+#header ul.megamenu li.back {
+    border-bottom: 5px solid white;
+    border-left:none;
+    border-right:none;
+    position: absolute;
+    width: 10px;
+    margin-top:34px;
+    line-height:1px;
+}
+
+#header ul.megamenu li span {
+
+    font-weight: bold;
+
+    font-size: 12px;
+
+    line-height: 14px;
+
+    text-decoration: none;
+
+    text-transform: uppercase;
+
+}
+
+
+#header ul.megamenu li a.active span {
+    background: #fff;
+    border-radius: 3px;
+    color: #404f65;
+    padding: 3px 8px 1px 8px;
+}
+
+#header #searchbox {
+position:relative;
+border-left: 1px solid #1e1e1e;
+padding-left: 7px;
+float: left;
+z-index:1;
+}
+
+#header #search:focus {
+outline: none;
+}
+
+#header #search {
+width: 150px;
+height: 30px;
+line-height: 30px   9;
+background: #4b494a;
+border: 1px solid #1a1a1a;
+-webkit-appearance: textfield;
+color: #eee;
+margin-top: 6px;
+margin-bottom: 6px;
+padding: 0 30px 0 5px;
+float: left;
+border-radius: 6px;
+box-shadow: inset 1px 1px 1px #3b3b3b;
+background-color: #4b494a;
+background-position: 96% center;
+background-repeat: no-repeat;
+}
+
+#header #searchbox .submit {
+width: 17px;
+height: 17px;
+border: none;
+cursor: pointer;
+background: url(/assets/icon_search.png) no-repeat;
+_background: transparent;
+margin-top: 13px;
+margin-left: -29px;
+}
+
+#header .tool-box {
+position: absolute;
+right: 5px;
+}
+
+#header .tool-box li {
+display: inline-block;
+padding: 0 6px;
+border-left: 1px dotted #363636;
+text-align: center;
+}
+
+#header .tool-box li.first {
+width:150px;
+border-left: none;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+text-align:right;
+}
+
+#header .tool-box a {
+display: inline-block;
+vertical-align: middle;
+height: 20px;
+line-height: 20px;
+text-align: center;
+font-size:16px;
+}
+
+#header #logo {
+width: 32px;
+height: 32px;
+background: url(/assets/logo.png) no-repeat;
+position: absolute;
+left: 410px;
+top: 5px;
+opacity=0.5;
+}
+
+
+
+textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus {
+border-color: rgba(82,168,236,0.8);
+outline: 0;
+outline: thin dotted 9;
+-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(82,168,236,0.6);
+-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(82,168,236,0.6);
+box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(82,168,236,0.6);
+}
+
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+background-color: #fff;
+border: 1px solid #ccc;
+-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+-webkit-transition: border linear .2s,box-shadow linear .2s;
+-moz-transition: border linear .2s,box-shadow linear .2s;
+-o-transition: border linear .2s,box-shadow linear .2s;
+transition: border linear .2s,box-shadow linear .2s;
+}
+
+

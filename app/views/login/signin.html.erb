@@ -1,0 +1,56 @@
+<link href="<%= static_url "/assets/css/login.css" %>" media="all" rel="stylesheet" type="text/css">
+<div>
+<%= flash[:alert] if flash[:alert] %>
+<%= flash[:notice] if flash[:notice] %>
+<%= flash[:success] if flash[:success] %>
+</div>
+<div class="auth-form" id="login">
+    <%= form_tag("/signin") do %>
+        <div class="auth-form-header">
+            <h1>登陆</h1>
+        </div>
+        <div class="auth-form-body">
+            <label for="login_field">用户名或者邮箱</label>
+            <input value="<%= params[:account] %>" autocapitalize="off" class="input-block" id="login_field" name="account" tabindex="1" type="text" />
+
+            <label for="password">密码</label>
+            <ahref="javascript:;"> | (忘记密码)</a>
+
+            <input value="<%= params[:password] %>" autocomplete="disabled" class="input-block" id="password" name="password" tabindex="2" type="password" />
+
+            <input class="button" name="commit" tabindex="3" type="submit" value="登陆" />
+            
+            <input type='checkbox' checked='checked' id='remember_me' name='remember_me' />下次自动登陆
+        </div>
+    <% end %>
+
+    <div style="margin-top:5px;">
+        <a href="/signout">退出登录</a>
+    </div>
+
+    <div style="margin-top:5px;">
+        <a href="javascript:open_oauth2_window('/login/qq_login');">腾讯QQ账号登陆</a>
+    </div>
+
+    <div style="margin-top:5px;">
+        <a href="javascript:open_oauth2_window('/login/weibo_login');">新浪微博帐号登陆</a>
+    </div>
+
+    <div style="margin-top:5px;">
+        <a href="javascript:open_oauth2_window('login/renren_login');">人人网帐号登陆</a>
+    </div>
+
+    <div style="margin-top:5px;">
+        <a href="javascript:open_oauth2_window('/login/douban_login');">豆瓣网帐号登陆</a>
+    </div>
+
+    <div style="margin-top:5px;">
+        <a href="javascript:open_oauth2_window('/login/kaixin_login');">开心网帐号登陆</a>
+    </div>
+
+    <div style="margin-top:5px;">
+        <a href="/signup">注册帐号</a>
+    </div>
+
+
+</div>

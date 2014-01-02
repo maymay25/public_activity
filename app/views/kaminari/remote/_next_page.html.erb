@@ -1,0 +1,6 @@
+<% unless current_page.last? -%>
+<% event ||= "javascript:;" %>
+<span class="next">
+    <a class="next" data-page="<%= current_page.to_i+1 %>" onclick="<%= event %>" href="javascript:;" rel="next">下一页</a>
+</span>
+<% end -%>

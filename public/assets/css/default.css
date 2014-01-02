@@ -1,0 +1,350 @@
+
+body {
+font-family: "Microsoft Yahei","Helvetica Neue","Luxi Sans","DejaVu Sans",Tahoma,"Hiragino Sans GB",STHeiti !important;
+color: #444;
+font: 13px/1.231 sans-serif;
+font-size: 100%;
+font: inherit;
+}
+
+span.color999 {
+color:#999;
+}
+
+#main .main-bg {
+background: url(/assets/main-bg.gif) repeat-y 102px 0;
+overflow: visible;
+padding-bottom: 40px;
+min-height: 600px;
+padding-top:20px;
+overflow:hidden;
+zoom:1;
+}
+
+.left {
+width: 650px;
+margin-right: 2px;
+padding-right: 15px;
+padding-left: 15px;
+overflow-x: hidden;
+float: left;
+position: relative;
+z-index: 10;
+background: #fff;
+}
+
+.right {
+width: 308px;
+overflow-x: hidden;
+overflow-y: visible;
+_zoom: 1;
+position: relative;
+z-index: 9;
+}
+
+#left-2013-03-22 .nav.menu {
+border: 4px solid #f2f2f2;
+background: #f2f2f2 9;
+border-radius: 15px;
+margin: 15px 0;
+}
+
+#left-2013-03-22 .nav.menu, 
+#left-2013-03-22 .nav.menu .li, 
+#left-2013-03-22 .nav.menu .li a {
+display: inline-block;
+font-size: 13px;
+-webkit-transition: color 0.2s ease-in-out;
+-moz-transition: color 0.2s ease-in-out;
+-o-transition: color 0.2s ease-in-out;
+transition: color 0.2s ease-in-out;
+}
+
+
+#left-2013-03-22 .nav.menu .li {
+background-repeat: no-repeat;
+}
+#left-2013-03-22 .nav.menu .li,
+#left-2013-03-22 .nav.menu .li a {
+background-image: url(/assets/nav_menu.gif);
+}
+
+#left-2013-03-22 .nav.menu .li.first a {
+border-left: none;
+padding-left: 5px;
+}
+
+#left-2013-03-22 .nav.menu .li.first {
+padding-left: 13px;
+background-position: 0 -112px;
+}
+
+#left-2013-03-22 .nav.menu .li.first.on {
+background-position: 0 -140px;
+}
+
+
+#left-2013-03-22 .nav.menu .li.last {
+padding-right: 13px;
+background-position: right -56px;
+}
+
+#left-2013-03-22 .nav.menu .li.last.on {
+background-position: right -84px;
+}
+
+#left-2013-03-22 .nav.menu .li.last a {
+border-right: none;
+padding-right: 5px;
+}
+
+#left-2013-03-22 .nav.menu .li a {
+padding: 0 13px;
+height: 28px;
+line-height: 28px;
+background-position: 0 0;
+border-right: 1px solid #f0f0f0;
+border-left: 1px solid #fbfbfb;
+color:#666;
+}
+
+#left-2013-03-22 .nav.menu .li a:hover {
+color:#109eff;
+}
+
+#left-2013-03-22 .nav.menu .li.on a {
+color: #fff;
+background-position: 0 -28px;
+}
+
+
+#left-2013-03-22 .user-timeline .dt {
+color: #333;
+line-height: 200%;
+border-bottom: 1px solid #e1e1e1;
+font-weight: bold;
+font-size: 13px;
+}
+
+#left-2013-03-22 .user-timeline {
+padding: 0;
+margin-bottom: 15px;
+}
+
+#left-2013-03-22 .user-timeline .comment {
+clear: both;
+border-bottom: none;
+padding: 10px 0;
+}
+
+#left-2013-03-22 .user-timeline .comment .time {
+width: 80px;
+margin-right: 8px;
+text-align: right;
+height: 100%;
+float: left;
+color: #999;
+font-size: 12px;
+}
+
+#left-2013-03-22 .user-timeline .comment .toolbar {
+font-size: 12px;
+margin: 0 15px 5px 8px;
+}
+
+#left-2013-03-22 .user-timeline .comment .toolbar a {
+margin-left: 5px;
+}
+
+#left-2013-03-22 .user-timeline .comment .toolbar .from {
+padding-left: 15px;
+background: url(/assets/comments.gif) no-repeat;
+}
+
+#left-2013-03-22 .user-timeline .comment .entry.blog .toolbar .from {
+background: url(/assets/blog.gif) no-repeat 0 center;
+}
+
+
+
+#left-2013-03-22 .user-timeline .comment .entry {
+border-left: #dedede 1px solid;
+overflow: hidden;
+}
+
+#left-2013-03-22 .user-timeline .comment .entry.bg {
+border-left: none;
+background: #f3f4f8;
+padding: 5px 10px;
+}
+
+#left-2013-03-22 .user-timeline .comment .entry.bg .toolbar {
+margin: 0 15px 0 0;
+}
+
+#left-2013-03-22 .user-timeline .comment .content {
+margin-left: 8px;
+}
+
+#left-2013-03-22 .user-timeline .comment .content p {
+margin: 0;
+text-align: left;
+line-height: 150%;
+font-size: 13px;
+}
+
+
+
+#left-2013-03-22 .pagination {
+padding: 10px 0;
+font-size:13px;
+}
+
+
+#left-2013-03-22 .pagination a{
+border: 1px solid #e7ecf0;
+}
+
+#left-2013-03-22 .pagination a:hover{
+background: #e9f1f7;
+}
+
+
+#left-2013-03-22 .pagination a,
+#left-2013-03-22 .pagination strong.on{
+padding: 0 8px;
+height: 22px;
+line-height: 22px;
+margin-right: 5px;
+width: auto;
+text-align: center;
+}
+
+#right-2013-03-24 .profile .pic {
+width: 100px;
+margin-left: 5px;
+float:left;
+}
+
+#right-2013-03-24 .profile .pic img {
+border-radius: 50%;
+-moz-border-radius: 50%;
+-webkit-border-radius: 50%;
+}
+
+#right-2013-03-24 .profile .info {
+margin-left: 10px;
+float:left;
+font-size: 13px;
+margin-top: 10px;
+}
+
+
+
+#right-2013-03-24 .profile .info .social a:last-of-type{
+    margin-right:0
+}
+
+#right-2013-03-24 .profile .info .social a{
+    -webkit-border-radius:50%;
+    -moz-border-radius:50%;
+    -ms-border-radius:50%;
+    -o-border-radius:50%;
+    border-radius:50%;
+    display:-moz-inline-stack;
+    display:inline-block;
+    vertical-align:middle;
+    *vertical-align:auto;
+    zoom:1;
+    *display:inline;
+    text-indent:-9999px;
+    margin-right:15px;
+    opacity:0.5;
+    width:28px;
+    height:28px;
+    -webkit-transition:0.3s;
+    -moz-transition:0.3s;
+    -o-transition:0.3s;
+    transition:0.3s
+}
+#right-2013-03-24 .profile .info .social a:hover{
+    opacity:1
+}
+#right-2013-03-24 .profile .info .social a.facebook{
+    background:url('/assets/lib/facebook.png') center no-repeat #3b5998;
+    border:1px solid #3B5998
+}
+#right-2013-03-24 .profile .info .social a.facebook:hover{
+    border:1px solid #2d4373
+}
+#right-2013-03-24 .profile .info .social a.google{
+    background:url('/assets/lib/google.png') center no-repeat #c83d20;
+    border:1px solid #C83D20
+}
+#right-2013-03-24 .profile .info .social a.google:hover{
+    border:1px solid #9c3019
+}
+#right-2013-03-24 .profile .info .social a.twitter{
+    background:url('/assets/lib/twitter.png') center no-repeat #55cff8;
+    border:1px solid #55CFF8
+}
+#right-2013-03-24 .profile .info .social a.twitter:hover{
+    border:1px solid #24c1f6
+}
+#right-2013-03-24 .profile .info .social a.github{
+    background:url('/assets/lib/github.png') center no-repeat #afb6ca;
+    border:1px solid #afb6ca
+}
+#right-2013-03-24 .profile .info .social a.github:hover{
+    border:1px solid #909ab6
+}
+#right-2013-03-24 .profile .info .social a.linkedin{
+    background:url('/assets/lib/linkedin.png') center no-repeat #005a87;
+    border:1px solid #005A87
+}
+#right-2013-03-24 .profile .info .social a.linkedin:hover{
+    border:1px solid #003854
+}
+#right-2013-03-24 .profile .info .social a.pinterest{
+    background:url('/assets/lib/pinterest.png') center no-repeat #be4037;
+    border:1px solid #be4037
+}
+#right-2013-03-24 .profile .info .social a.pinterest:hover{
+    border:1px solid #96332c
+}
+#right-2013-03-24 .profile .info .social a.delicious{
+    background:url('/assets/lib/delicious.png') center no-repeat #3271cb;
+    border:1px solid #3271cb
+}
+#right-2013-03-24 .profile .info .social a.delicious:hover{
+    border:1px solid #285aa2
+}
+#right-2013-03-24 .profile .info .social a.pinboard{
+    background:url('/assets/lib/pinboard.png') center no-repeat #0066c8;
+    border:1px solid #3a729f
+}
+#right-2013-03-24 .profile .info .social a.pinboard:hover{
+    border:1px solid #0052cc
+}
+#right-2013-03-24 .profile .info .social a.rss{
+    background:url('/assets/lib/rss.png') center no-repeat #ef7522;
+    border:1px solid #EF7522
+}
+#right-2013-03-24 .profile .info .social a.rss:hover{
+    border:1px solid #cf5d0f
+}
+
+
+
+
+/*  '返回顶部'  */
+#back-top {
+    font-size: 13px;
+    line-height: 18px;
+    color: #333333;
+    position: fixed;
+    right: 5px;
+    bottom: 10px;
+    _position: absolute;
+    _top: expression(eval(documentElement.scrollTop+documentElement.clientHeight-this.clientHeight-30)+'px');
+}

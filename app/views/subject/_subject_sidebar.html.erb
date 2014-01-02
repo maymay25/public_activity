@@ -1,0 +1,100 @@
+<div class="sidebar">
+  <div class="subject_info mgB20">
+      
+        <div class="title clearfix">
+          <div class="l">
+            <a href="/subject/<%= @subject.identify %>/">
+              <img class="site-logo" alt="" src="<%= @subject.cover_path.big.url %>" width="124px" height="124px">
+            </a>
+          </div>
+          <div class="r">
+            <div class="n1"><a class="down" href="/subject/<%= @subject.identify %>/"><%= @subject.title %></a></div>
+            <div class="n2">专题下有 <i><%= @subject.post_sum.to_i %></i> 篇文章</div>
+            <div class="n2"><i><%= @subject_followers_sum %></i> 人订阅了该专题</div>
+            <div class="n2"><a href="javascript:;" class="ft16 lnk-selection <%= 'already' if @is_follow %>" data-subject-id="<%= @subject.id %>" onclick="javascript:switch_follow_subject(this);"><%= @is_follow ? '取消订阅' : '订阅' %></a></div>
+          </div>
+        </div>
+        <div class="clr"></div>
+      
+      <div class="desc">
+        <div>
+          <%= @subject.intro %>
+          <% if admin? %>
+          <a class="down" href="/subject/<%= @subject.identify %>/new">写文章</a>
+          <% end %>
+        </div>
+      </div>
+  </div>
+
+  <% if @public_comment_posts and @public_comment_posts.length >0 %>
+  <div class="hot mgB20">
+    <h2>大家正在热议</h2>
+    <ul class="hot-thumb-wrap">
+      <% @public_comment_posts.each do |post| %>
+      <li class="hot-thumb">
+        <span class="hot-thumb-number">
+          <a href="/subject/<%= post.subject_identify %>/<%= post.id %>"><%= post.comment_sum.to_i %></a>
+        </span>
+        <span class="hot-thumb-image">
+          <a href="/subject/<%= post.subject_identify %>/<%= post.id %>">
+            <img width="30" height="30" src="<%= post.cover_path.small.url || static_url('/assets/img/common/post_bg_30.jpg') %>" alt="">
+          </a>
+        </span>
+        <span class="hot-thumb-title offset">
+          <a class="down" href="/subject/<%= post.subject_identify %>/<%= post.id %>" title="<%= post.title if post.title.length>19 %>"><%= post.title.first(19) %></a>
+        </span>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <% if @sidebar_followers and @sidebar_followers.length > 0 %>
+  <div class="fans mgB20">
+    <h2>
+      订阅该专题的人
+      <span class="normal">(<%= @subject_followers_sum %>)</span>
+      <% if @subject_followers_sum > 5 %>
+      <a href="javascript:;" class="fr normal">更多</a>
+      <% end %>
+    </h2>
+    <div class="fans_content">
+      <% @sidebar_followers.each do |user| %>
+      <div class="item">
+        <a class="none" href="/<%= user.id %>">
+          <img alt="" src="<%= user.avatar_path.normal.url %>">
+        </a>
+        <a class="down none nickname" href="/<%= user.id %>" title="<%= user.nickname %>"><%= user.nickname %></a>
+      </div>
+      <% end %>
+    </div>
+    <div class="clr"></div>
+  </div>
+  <% end %>
+
+  <% if @subject_tags_cloud and @subject_tags_cloud.length > 0 %>
+  <div class="tags mgB20">
+    <h2>该专题下的标签</h2>
+    <div class="tagcloud">
+      <% @subject_tags_cloud.each do |r,rank| %>
+      <a class="rank-<%= rank %>" title="<%= r.post_sum %>篇文章" href="/subject<%= @subject.id %>/<%= r.tag %>"><%= r.tag %></a>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+
+  <% if @other_subjects_cloud and @other_subjects_cloud.length > 0 %>
+  <div class="categories mgB20">
+    <h2>
+      其他专题
+    </h2>
+
+    <div class="tagcloud">
+      <% @other_subjects_cloud.each do |r,rank| %>
+      <a class="rank-<%= rank %>" title="<%= r.post_sum %>篇文章" href="/subject/<%= r.identify %>"><%= r.title %></a>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+
+</div>

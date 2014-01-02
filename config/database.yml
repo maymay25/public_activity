@@ -1,0 +1,29 @@
+development:
+  adapter: postgresql
+  encoding: utf8
+  database: activity_blog
+  pool: 5
+  username: jeffrey
+  password: hero2000
+  host: 121.199.22.3
+  port: 5432
+
+test:
+  adapter: postgresql
+  encoding: utf8
+  database: activity_blog
+  pool: 5
+  username: jeffrey
+  password: hero2000
+  host: 121.199.22.3
+  port: 5432
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  database: activity_blog
+  pool: 5
+  username: jeffrey
+  password: hero2000
+  host: 121.199.22.3
+  port: 5432

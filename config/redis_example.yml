@@ -1,0 +1,23 @@
+development:
+  host: 127.0.0.1
+  port: 6379
+  password: ''
+  auth: ''
+  cache_db: 0
+  sidekiq_db: 1
+
+test:
+  host: 50.30.35.9
+  port: 2201
+  password: a12e2d3c2cd6a0afe397241b2815b7fe
+  auth: jeffrey6052:a12e2d3c2cd6a0afe397241b2815b7fe@
+  cache_db: 0
+  sidekiq_db: 1
+
+production:
+  host: 50.30.35.9
+  port: 2201
+  password: a12e2d3c2cd6a0afe397241b2815b7fe
+  auth: jeffrey6052:a12e2d3c2cd6a0afe397241b2815b7fe@
+  cache_db: 0
+  sidekiq_db: 1

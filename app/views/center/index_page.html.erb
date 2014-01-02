@@ -1,0 +1,43 @@
+<div class="center_wrap">
+  <%= render partial:'basic_info' %>
+  <div class="container">
+    <div class="layout_wrap">
+			<%# if @followed_subjects and @followed_subjects.length > 0 %>
+      <% if true %>
+      <div class="ihome_forum_group ihome_section clearfix">
+          <h1 class="ihome_title">
+            <span class="cut_line">|</span><%= user_mark @u %>订阅的专题
+          </h1>
+          <div class="clearfix u-f-wrap">
+              <% @followed_subjects.each do |f| %>
+              <a href="/subject/<%= f.subject_identify %>" target="_blank" class="u-f-item unsign">
+              	<span><%= f.subject_title %></span>
+              </a>
+              <% end %>
+							<% if @followed_subjects_sum > 7 %>
+              <a href="/<%= @u.id %>/subject" class="u-f-item">查看更多>></a>
+							<% end %>
+          </div>    
+      </div>
+			<% end %>
+
+      <% if false %>
+      <div class="ihome_forum_group ihome_section clearfix">
+          <h1 class="ihome_title">
+            <span class="cut_line">|</span><%= user_mark @u %>的动态
+          </h1>
+          <div class="clearfix u-f-wrap">
+            <%= render partial:'timeline' %>
+          </div>    
+      </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+<% content_for :bodyScript do %>
+<script src="<%= static_url "/assets/js/view/page.center.js" %>"></script>
+<% end %>
+
+

@@ -1,0 +1,21 @@
+<script type="text/javascript">
+    requirejs.config({
+        //By default load any module IDs from js/lib
+        baseUrl: "<%= static_url "/assets/js/lib" %>",
+        paths:{
+            plugin:'../plugin'
+        },
+        shim: {
+          'plugin/alertify':{
+            deps:['jquery']
+          },
+          'plugin/jquery.easing':{
+            deps: ['jquery']
+          },
+          'plugin/jquery.megamenu':{
+            deps: ['jquery','plugin/jquery.easing']
+          }
+        },
+        urlArgs:'v=<%= APP_VERSION %>'
+    });
+</script>

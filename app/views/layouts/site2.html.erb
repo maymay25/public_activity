@@ -1,0 +1,239 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title><%= @page_title || "随心社区-自由自在的休闲网络社区" %></title>
+  <meta charset=utf-8>
+  <meta name="description" content="<%= @page_description %>">
+  <meta name="keywords" content="<%= @page_keywords %>">
+
+  <% if false %>
+  <link rel="stylesheet" type="text/css" href="<%= static_url "/assets/soundmanager/inlineplayer.css" %>" />
+	<script type="text/javascript" src="<%= static_url "/assets/soundmanager/soundmanager2-jsmin.js" %>"></script>
+	<script type="text/javascript" src="<%= static_url "/assets/soundmanager/inlineplayer.js" %>"></script>
+  <% end %>
+
+  <% if false #ie6调试 %>
+  <script type="text/javascript" src="https://getfirebug.com/firebug-lite.js"></script>
+  <% end %>
+
+  <script type="text/javascript" src="<%= static_url "/assets/js/lib/jquery.js" %>"></script>
+  <link href="<%= static_url "/assets/site2/site2.css" %>" rel="stylesheet">
+  <script type="text/javascript" src="<%= static_url "/assets/site2/site2.js" %>"></script>
+  <script src="<%= static_url "/assets/js/lib/require.js" %>"></script>
+  <script type="text/javascript">
+    requirejs.config({
+        baseUrl: '<%= static_url "/assets/js/lib","noVersion" %>',
+        paths:{
+            plugin:'../plugin',
+            templates:'../templates'
+        },
+        shim: {
+            underscore: {
+                exports: '_'
+            }
+        },
+        urlArgs:'<%= APP_VERSION %>'
+    });
+
+    var app_config = {};
+  </script>
+  <%= yield(:head) if content_for? :head %>
+
+  <link rel='icon' type='image/png' href='/favicon.ico'>
+
+  <%= csrf_meta_tags %>
+
+</head>
+
+<%
+if flash[:succ].present?
+msg,type = flash[:succ], 'succ'
+elsif flash[:error].present?
+msg,type = flash[:error], 'error'
+elsif flash[:notice].present?
+msg,type = flash[:notice], 'warn'
+end
+%>
+<body class="<%= yield(:bodyClass) if content_for? :bodyClass %>" <% if msg %>data-msg="<%= msg %>" data-type="<%= type %>"<% end %>>
+
+
+
+<div id="T">
+  <div class="bg ">
+    <div class="container">
+      <div class="logo">
+        <a href="javascript:;"></a>
+      </div>
+      <div class="nav fl">
+        <ul>
+          <li>
+            <a href="/">首页</a>
+          </li>
+          <li class="hide">
+            <a href="/group">小组</a>
+          </li>
+          <li>
+            <a href="/subject">专题</a>
+          </li>
+          <li class="hide">
+            <a href="javascript:;" id="OpenMoreLinks">
+              导航
+              <em></em>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="nav fr" id="accountInfo">
+        <% if signed_in? %>
+        <ul>
+          <li>
+            <a href="/<%= @current_uid %>"><%= @current_user.nickname %></a>
+          </li>
+          <li>
+            <a href="/signout">登出</a>
+          </li>
+        </ul>
+        <% else %>
+        <ul>
+          <li>
+            <a href="javascript:;" href2="/login">登录</a>
+          </li>
+          <li>
+            <a href="javascript:;" href2="/logup">注册</a>
+          </li>
+        </ul>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="morelinks" id="MoreLinks">
+    <div class="bg container">
+      <div class="column">
+        <div>
+          <dl>
+            <dt>娱乐、休闲</dt>
+            <dd>
+              <a href="javascript:;">娱乐八卦</a>
+              <a href="javascript:;">五花八门</a>
+              <a href="javascript:;">搞笑视频</a>
+              <a href="javascript:;">色系军团</a>
+              <a href="javascript:;">音乐天堂</a>
+              <a href="javascript:;">游戏天地</a>
+              <a href="javascript:;">影视专区</a>
+              <a href="javascript:;">十二星座</a>
+              <a href="javascript:;">明星档案</a>
+              <a href="javascript:;">穿越火线</a>
+              <a href="javascript:;">搞笑图片</a>
+              <a href="javascript:;">奇闻趣事</a>
+            </dd>
+          </dl>
+        </div>
+      </div>
+      <div class="column">
+        <div>
+          <dl>
+            <dt>生活、经验</dt>
+            <dd>
+              <a href="javascript:;">美食厨房</a>
+              <a href="javascript:;">数码世界</a>
+              <a href="javascript:;">旅游户外</a>
+              <a href="javascript:;">家有宠物</a>
+              <a href="javascript:;">电脑知识</a>
+              <a href="javascript:;">母婴育儿</a>
+              <a href="javascript:;">健康频道</a>
+              <a href="javascript:;">拉风汽车</a>
+              <a href="javascript:;">体坛风云</a>
+              <a href="javascript:;">手机交流</a>
+              <a href="javascript:;">曝光台</a>
+              <a href="javascript:;">生活常识</a>
+            </dd>
+          </dl>
+        </div>
+      </div>
+      <div class="column">
+        <div>
+          <dl>
+            <dt>专题</dt>
+            <dd>
+              <a href="javascript:;">女装搭配</a>
+              <a href="javascript:;">女生发型</a>
+              <a href="javascript:;">丽人妆颜</a>
+              <a href="javascript:;">我爱购物</a>
+              <a href="javascript:;">美体塑形</a>
+              <a href="javascript:;">明星榜样</a>
+              <a href="javascript:;">婚嫁地带</a>
+              <a href="javascript:;">家居装修</a>
+              <a href="javascript:;">减肥吧</a>
+            </dd>
+          </dl>
+        </div>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+
+  <div class="shadow1">&nbsp;</div>
+  <div class="shadow2">&nbsp;</div>
+</div>
+
+<div class="themeBg">
+
+  <%= yield %>
+
+</div>
+
+<div class="clr"></div>
+<div id="F">
+  <div class="shadow2">&nbsp;</div>
+  <div class="shadow1">&nbsp;</div>
+  <div class="footer">
+    <div class="container">
+      <div class="links">
+        <a rel="nofollow" href="javascript:;" target="_blank">关于随心社区</a>
+        ·
+        <a rel="nofollow" href="javascript:;">联系我们</a>
+        ·
+        <a rel="nofollow" href="javascript:;" target="_blank">帮助中心</a>
+        ·
+        <a href="javascript:;" target="_blank">网站地图</a>
+      </div>
+      <div class="tongji">
+          <a href="javascript:;" target="_blank" title="站长统计">
+            <img border="0" hspace="0" vspace="0" src="http://icon.cnzz.com/pic1.gif">
+          </a>
+      </div>
+      <div class="copyright">
+        <p>
+          <span class="icp">沪ICP备 13027097号</span>
+          ©2013 Powered by suixin365.com
+          <a href="javascript:;" target="_blank">随心社区</a>
+          版权所有
+        </p>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+</div>
+
+<div class="bodyScript">
+  <%= yield(:bodyScript) if content_for? :bodyScript %>
+</div>
+
+<div class="hide">
+<%= render partial:'bdhm' %>
+</div>
+
+<%= render partial:'ie6_png_fixed' %>
+
+<%= render partial:'lets_kill_ie6' %>
+
+<%= render partial:'scroll_to_top' %>
+
+<%= render partial:'feed_back' %>
+
+</body>
+
+</html>
+

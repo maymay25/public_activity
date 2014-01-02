@@ -1,0 +1,63 @@
+<div class="center_wrap">
+
+  <%= render partial:'basic_info' %>
+
+  <div class="container">
+
+    <div class="layout_wrap">
+      
+      <div class="ihome_hot_feed ihome_section">
+        <h1 class="threadList_title"><span class="cut_line">|</span><%= user_mark @u %>的评论</h1>
+        <ul class="new_list clearfix">
+          <% if @comments and @comments.length>0 %>
+            <% @comments.each_with_index do |c,index| %>
+            <% subject = @subjects[c.subject_id] %>
+            <div class="n_right clearfix <%= 'n_right_first' if index.zero? %>">
+              <div class="n_post_time"><%= feed_time c.created_at %></div>
+              <div class="n_avatar">
+                <a href="/subject/<%= subject.identify %>">
+                  <img src="<%= subject.cover_path.normal.url %>">
+                </a>
+              </div>
+              <div class="n_contain">
+                <div>
+                  <div class="thread_name">
+                    <span class="title">
+                    评论了 <a href="/subject/<%= c.subject_identify %>/<%= c.post_id %>" class="down"><%= c.post_title %></a>
+                    </span>
+                  </div>
+                </div>
+                <div class="n_txt_huifu">
+                  <div class="n_triangle"></div>
+                  <span>
+                    <span class="n_type type_huifu"></span>
+                    <%= c.content %>
+                  </span>
+                  <div class="clr"></div>
+                </div>
+                <div class="n_reply">
+                  <a href="/subject/<%= subject.identify %>" class="post_author grey2"><%= subject.title %></a>
+                  <span class="userinfo_split"></span>
+                  <a href="/subject/<%= c.subject_identify %>/<%= c.post_id %>" class="post_num grey2"><%= c.created_at.strftime("%Y-%m-%d") %></a>
+                </div>
+              </div>
+            </div>
+            <% end %>
+          <% elsif params[:page].to_i <= 1 %>
+            <div class="empty_notice">
+              <%= user_mark @u,'' %>还没有发表过评论
+            </div>
+          <% end %>
+        </ul>
+      </div>
+      
+    </div>
+
+  </div>
+</div>
+
+<% content_for :bodyScript do %>
+<script src="<%= static_url "/assets/js/view/page.center.js" %>"></script>
+<% end %>
+
+

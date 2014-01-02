@@ -1,0 +1,430 @@
+<div class="subject_wrap">
+  <div class="container">
+    
+    <% if @develop %>
+    <div>
+      <div class="square-pts">
+      <% @subjects.each do |subject| %>
+      <% posts = @subject_posts[subject.id] 
+         first_post = posts && posts.first
+         post_list = (posts && posts[1..-1]) || []
+      %>
+        <div class="pt">
+          <h3 class="bigsize">
+            <% if first_post %>
+            <a class="up" href="/subject/<%= first_post.subject_identify %>/<%= first_post.id %>"><%= first_post.title %></a>
+            <% end %>
+          </h3>
+          <div class="pt-info">
+            <a href="/subject/<%= subject.identify %>" class="block">
+              <div class="pt-pic">
+                 <img src="<%= subject.cover_path.big.url %>" class="site-logo" alt="">
+              </div>
+              <div class="pt-title">
+                <h3><%= subject.title %></h3>
+              </div>
+            </a>
+          </div>
+          <div class="pt-sub">
+            <ul class="mod-list main-list">
+              <% post_list.each do |post| %>
+              <li><a class="down" href="/subject/<%= post.subject_identify %>/<%= post.id %>"><%= post.title %></a></li>
+              <% end %>
+            </ul>
+          </div>
+          <div class="clr"></div>
+        </div>
+      <% end %>
+      </div>
+
+      <div class="pagination_wrap">
+        <%= paginate @subjects,inner_window:3,outer_window:1 %>
+      </div>
+
+    </div>
+
+    <% else %>
+    <div class="mgB10 clearfix">
+      <div id="square_best">
+        <div class="clearfix">
+          <div class="headline">
+            <a href="/site/entry/691727408/view" target="_blank">
+              <img src="http://t.douban.com/epic/large_691727408_2.jpg"></a>
+            <dl>
+              <dt>
+                <h3>
+                  <a href="/site/entry/691727408/view" class="up" target="_blank">我的最佳书选：有关写作、纽约、动物及更...</a>
+                </h3>
+              </dt>
+              <dd>
+                <div class="summary">
+                  译者：amps 原文地址：brainpickings.org
+
+                  精致纸雕艺术模型为经典读物增资添彩！ 
+
+                  &nbsp;
+
+                  我极爱公共图书馆，也是其忠实主顾，所以，当纽约公共图书馆的工作人员请我为他们的书店整理一份...
+                </div>
+                <div class="from">
+                  <a class="down" href="http://www.mihuwa.com/user/drcoffee/">译言精选</a> • 2013-09-25 • 542 次浏览
+                </div>
+              </dd>
+            </dl>
+          </div>
+          <dl>
+            <dt>
+              <h3>
+                <a href="/site/entry/691710624/view" class="up" target="_blank">爱可爱，爱可怕</a>
+              </h3>
+            </dt>
+            <dd>
+              <div class="summary">
+                眼福｜11
+
+                ◎ 《护生画集》，丰子恺作品。它先是寿礼，再是怀念，续至6册，已成雅集。而到据新加坡版勘校修复、...
+              </div>
+              <div class="from">
+                <a class="down" href="http://www.mihuwa.com/user/drcoffee/">孤岛客</a> • 2013-09-25 • 542 次浏览
+              </div>
+            </dd>
+          </dl>
+          <dl>
+            <dt>
+              <h3>
+                <a href="/site/entry/691707648/view" class="up" target="_blank">绝非仅仅是一本爱情小说</a>
+              </h3>
+            </dt>
+            <dd>
+              <div class="summary">一个如马丁·苏特这样拥有阅历和才华的作家在写下一部长篇小说的时候，往往并不仅仅想表述一个简单的故事，或...</div>
+              <div class="from">
+                <a class="down" href="http://www.mihuwa.com/user/drcoffee/">孤岛客</a> • 2013-09-25 • 542 次浏览
+              </div>
+            </dd>
+          </dl>
+          <dl>
+            <dt>
+              <h3>
+                <a href="/site/entry/691592788/view" class="up" target="_blank">表演型人格障碍</a>
+              </h3>
+            </dt>
+            <dd>
+              <div class="summary">
+                在心理咨询师眼里，谁都是病人。没病你也能被他吓出病来。
+
+                过去，心理咨询师看病的方式，就是开个诊所，接待各...
+              </div>
+              <div class="from">
+                <a class="down" href="http://www.mihuwa.com/user/drcoffee/">孤岛客</a> • 2013-09-25 • 542 次浏览
+              </div>
+            </dd>
+          </dl>
+          <dl>
+            <dt>
+              <h3>
+                <a href="/site/entry/691585375/view" class="up" target="_blank">他乡与故乡。</a>
+              </h3>
+            </dt>
+            <dd>
+              <div class="summary">早晨看到一条朋友的微博，说去年中秋在印度沙漠里，半夜被强烈的月光晒醒一直没睡着，看着没有尽头空无一物的...</div>
+              <div class="from">
+                <a class="down" href="http://www.mihuwa.com/user/drcoffee/">孤岛客</a> • 2013-09-25 • 542 次浏览
+              </div>
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="fr mgB10" style="width:250px">
+        <img src="/assets/img/douban_dongxi.jpg" border="0" width="250" height="140">
+      </div>
+
+      <div id="weekly_hot" class="hot_list_module">
+        <div class="top clearfix">
+          <em></em>
+          <b></b>
+        </div>
+        <h2> <b>一周热点文章</b>
+        </h2>
+        <ul>
+          <li>
+            <a class="down" href="http://9.douban.com/site/entry/690791216/">如何在下半生走上正途如何在下半生走上正途如何在下半生走上正途</a>
+          </li>
+          <li>
+            <a class="down" href="http://9.douban.com/site/entry/208054006/">如果你还没结婚……</a>
+          </li>
+          <li>
+            <a class="down" href="http://9.douban.com/site/entry/690027480/">当我们羡慕别人时我们在羡慕什么</a>
+          </li>
+          <li>
+            <a class="down" href="http://9.douban.com/site/entry/682863549/">趁你还吃得下一切的时候</a>
+          </li>
+          <li>
+            <a class="down" href="http://9.douban.com/site/entry/691642908/">被作为NBA之LOGO的男子：杰里-韦斯...</a>
+          </li>
+          <li>
+            <a class="down" href="http://9.douban.com/site/entry/253420982/">逃出你的肖申克（五）：看不见的牢笼（...</a>
+          </li>
+          <li>
+            <a class="down" href="http://9.douban.com/site/entry/691716679/">MySQLdb 参数处理的坑</a>
+          </li>
+          <li>
+            <a class="down" href="http://9.douban.com/site/entry/691310393/">青海湖第一天</a>
+          </li>
+          <li>
+            <a class="down" href="http://9.douban.com/site/entry/187856285/">什么是天下第一奇毒</a>
+          </li>
+          <li>
+            <a class="down" href="http://9.douban.com/site/entry/290153361/">色彩还原、英伦之地</a>
+          </li>
+        </ul>
+        <div class="bottom clearfix"> <em></em>
+          <b></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="">
+      
+      <div class="square-pts">
+
+        <div class="pt">
+          <h3 class="bigsize"><a class="up" href="http://news.163.com/13/0926/02/99LQNFV700014AED.html">19省公开社会抚养费数额 最高33亿最低350万</a></h3>
+          <div class="pt-info">
+            <a href="javascript" class="block">
+              <div class="pt-pic">
+                 <img src="http://img.mihuwa.com/mhwimg/2013/01/river-fish-150x150.jpg" class="site-logo" alt="新闻中心">
+              </div>
+              <div class="pt-title">
+                <h3 href="http://www.mihuwa.com/site/handwork/">新闻中心</h3>
+              </div>
+            </a>
+          </div>
+          <div class="pt-sub">
+            <ul class="mod-list main-list">
+              <li><a class="down" href="http://news.163.com/special/tiedaobugaoguan/">原昆明铁路局局长伙同情妇受贿1500万元案开审</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/02/99LQO8L400014AEE.html">温州回应“1.5万套房断供”：断供房弃房595套</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/09/99MJ26SF00014JB6.html">新一轮成品油下调成定局 每吨下调200元左右</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/02/99LR5DIN0001124J.html">陕西南部频现毒蜂杀人:农妇稻田边被蜇200针</a></li>
+              <li><a class="down" href="http://auto.163.com/photoview/2EI00008/160774.html#fr=new1">多图解析"李亚鹏送王菲"的平衡车</a></li>
+            </ul>
+          </div>
+          <div class="clr"></div>
+        </div>
+        <div class="pt">
+          <h3 class="bigsize"><a class="up" href="http://news.163.com/13/0926/02/99LQNFV700014AED.html">19省公开社会抚养费数额 最高33亿最低350万</a></h3>
+          <div class="pt-info">
+            <a href="javascript" class="block">
+              <div class="pt-pic">
+                 <img src="http://img.mihuwa.com/mhwimg/2012/09/113841390114afded1l-150x150.jpg" class="site-logo" alt="新闻中心">
+              </div>
+              <div class="pt-title">
+                <h3 href="http://www.mihuwa.com/site/handwork/">新闻中心</h3>
+              </div>
+            </a>
+          </div>
+          <div class="pt-sub">
+            <ul class="mod-list main-list">
+              <li><a class="down" href="http://news.163.com/special/tiedaobugaoguan/">原昆明铁路局局长伙同情妇受贿1500万元案开审</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/02/99LQO8L400014AEE.html">温州回应“1.5万套房断供”：断供房弃房595套</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/09/99MJ26SF00014JB6.html">新一轮成品油下调成定局 每吨下调200元左右</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/02/99LR5DIN0001124J.html">陕西南部频现毒蜂杀人:农妇稻田边被蜇200针</a></li>
+              <li><a class="down" href="http://auto.163.com/photoview/2EI00008/160774.html#fr=new1">多图解析"李亚鹏送王菲"的平衡车</a></li>
+            </ul>
+          </div>
+          <div class="clr"></div>
+        </div>
+        <div class="pt">
+          <h3 class="bigsize"><a class="up" href="http://news.163.com/13/0926/02/99LQNFV700014AED.html">19省公开社会抚养费数额 最高33亿最低350万</a></h3>
+          <div class="pt-info">
+            <a href="javascript" class="block">
+              <div class="pt-pic">
+                 <img src="http://img.mihuwa.com/mhwimg/2013/01/river-fish-150x150.jpg" class="site-logo" alt="新闻中心">
+              </div>
+              <div class="pt-title">
+                <h3 href="http://www.mihuwa.com/site/handwork/">新闻中心</h3>
+              </div>
+            </a>
+          </div>
+          <div class="pt-sub">
+            <ul class="mod-list main-list">
+              <li><a class="down" href="http://news.163.com/special/tiedaobugaoguan/">原昆明铁路局局长伙同情妇受贿1500万元案开审</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/02/99LQO8L400014AEE.html">温州回应“1.5万套房断供”：断供房弃房595套</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/09/99MJ26SF00014JB6.html">新一轮成品油下调成定局 每吨下调200元左右</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/02/99LR5DIN0001124J.html">陕西南部频现毒蜂杀人:农妇稻田边被蜇200针</a></li>
+              <li><a class="down" href="http://auto.163.com/photoview/2EI00008/160774.html#fr=new1">多图解析"李亚鹏送王菲"的平衡车</a></li>
+            </ul>
+          </div>
+          <div class="clr"></div>
+        </div>
+        <div class="pt">
+          <h3 class="bigsize"><a class="up" href="http://news.163.com/13/0926/02/99LQNFV700014AED.html">19省公开社会抚养费数额 最高33亿最低350万</a></h3>
+          <div class="pt-info">
+            <a href="javascript" class="block">
+              <div class="pt-pic">
+                 <img src="http://img.mihuwa.com/mhwimg/2012/12/13-150x150.jpg" class="site-logo" alt="新闻中心">
+              </div>
+              <div class="pt-title">
+                <h3 href="http://www.mihuwa.com/site/handwork/">新闻中心</h3>
+              </div>
+            </a>
+          </div>
+          <div class="pt-sub">
+            <ul class="mod-list main-list">
+              <li><a class="down" href="http://news.163.com/special/tiedaobugaoguan/">原昆明铁路局局长伙同情妇受贿1500万元案开审</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/02/99LQO8L400014AEE.html">温州回应“1.5万套房断供”：断供房弃房595套</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/09/99MJ26SF00014JB6.html">新一轮成品油下调成定局 每吨下调200元左右</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/02/99LR5DIN0001124J.html">陕西南部频现毒蜂杀人:农妇稻田边被蜇200针</a></li>
+              <li><a class="down" href="http://auto.163.com/photoview/2EI00008/160774.html#fr=new1">多图解析"李亚鹏送王菲"的平衡车</a></li>
+            </ul>
+          </div>
+          <div class="clr"></div>
+        </div>
+        <div class="pt">
+          <h3 class="bigsize"><a class="up" href="http://news.163.com/13/0926/02/99LQNFV700014AED.html">19省公开社会抚养费数额 最高33亿最低350万</a></h3>
+          <div class="pt-info">
+            <a href="javascript" class="block">
+              <div class="pt-pic">
+                 <img src="http://img.mihuwa.com/mhwimg/2012/09/113841390114afded1l-150x150.jpg" class="site-logo" alt="新闻中心">
+              </div>
+              <div class="pt-title">
+                <h3 href="http://www.mihuwa.com/site/handwork/">新闻中心</h3>
+              </div>
+            </a>
+          </div>
+          <div class="pt-sub">
+            <ul class="mod-list main-list">
+              <li><a class="down" href="http://news.163.com/special/tiedaobugaoguan/">原昆明铁路局局长伙同情妇受贿1500万元案开审</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/02/99LQO8L400014AEE.html">温州回应“1.5万套房断供”：断供房弃房595套</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/09/99MJ26SF00014JB6.html">新一轮成品油下调成定局 每吨下调200元左右</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/02/99LR5DIN0001124J.html">陕西南部频现毒蜂杀人:农妇稻田边被蜇200针</a></li>
+              <li><a class="down" href="http://auto.163.com/photoview/2EI00008/160774.html#fr=new1">多图解析"李亚鹏送王菲"的平衡车</a></li>
+            </ul>
+          </div>
+          <div class="clr"></div>
+        </div>
+        <div class="pt">
+          <h3 class="bigsize"><a class="up" href="http://news.163.com/13/0926/02/99LQNFV700014AED.html">19省公开社会抚养费数额 最高33亿最低350万</a></h3>
+          <div class="pt-info">
+            <a href="javascript" class="block">
+              <div class="pt-pic">
+                 <img src="http://img.mihuwa.com/mhwimg/2012/09/113841390114afded1l-150x150.jpg" class="site-logo" alt="新闻中心">
+              </div>
+              <div class="pt-title">
+                <h3 href="http://www.mihuwa.com/site/handwork/">新闻中心</h3>
+              </div>
+            </a>
+          </div>
+          <div class="pt-sub">
+            <ul class="mod-list main-list">
+              <li><a class="down" href="http://news.163.com/special/tiedaobugaoguan/">原昆明铁路局局长伙同情妇受贿1500万元案开审</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/02/99LQO8L400014AEE.html">温州回应“1.5万套房断供”：断供房弃房595套</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/09/99MJ26SF00014JB6.html">新一轮成品油下调成定局 每吨下调200元左右</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/02/99LR5DIN0001124J.html">陕西南部频现毒蜂杀人:农妇稻田边被蜇200针</a></li>
+              <li><a class="down" href="http://auto.163.com/photoview/2EI00008/160774.html#fr=new1">多图解析"李亚鹏送王菲"的平衡车</a></li>
+            </ul>
+          </div>
+          <div class="clr"></div>
+        </div>
+        <div class="pt">
+          <h3 class="bigsize"><a class="up" href="http://news.163.com/13/0926/02/99LQNFV700014AED.html">19省公开社会抚养费数额 最高33亿最低350万</a></h3>
+          <div class="pt-info">
+            <a href="javascript" class="block">
+              <div class="pt-pic">
+                 <img src="http://img.mihuwa.com/mhwimg/2012/09/113841390114afded1l-150x150.jpg" class="site-logo" alt="新闻中心">
+              </div>
+              <div class="pt-title">
+                <h3 href="http://www.mihuwa.com/site/handwork/">新闻中心</h3>
+              </div>
+            </a>
+          </div>
+          <div class="pt-sub">
+            <ul class="mod-list main-list">
+              <li><a class="down" href="http://news.163.com/special/tiedaobugaoguan/">原昆明铁路局局长伙同情妇受贿1500万元案开审</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/02/99LQO8L400014AEE.html">温州回应“1.5万套房断供”：断供房弃房595套</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/09/99MJ26SF00014JB6.html">新一轮成品油下调成定局 每吨下调200元左右</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/02/99LR5DIN0001124J.html">陕西南部频现毒蜂杀人:农妇稻田边被蜇200针</a></li>
+              <li><a class="down" href="http://auto.163.com/photoview/2EI00008/160774.html#fr=new1">多图解析"李亚鹏送王菲"的平衡车</a></li>
+            </ul>
+          </div>
+          <div class="clr"></div>
+        </div>
+        <div class="pt">
+          <h3 class="bigsize"><a class="up" href="http://news.163.com/13/0926/02/99LQNFV700014AED.html">19省公开社会抚养费数额 最高33亿最低350万</a></h3>
+          <div class="pt-info">
+            <a href="javascript" class="block">
+              <div class="pt-pic">
+                 <img src="http://img.mihuwa.com/mhwimg/2012/09/113841390114afded1l-150x150.jpg" class="site-logo" alt="新闻中心">
+              </div>
+              <div class="pt-title">
+                <h3 href="http://www.mihuwa.com/site/handwork/">新闻中心</h3>
+              </div>
+            </a>
+          </div>
+          <div class="pt-sub">
+            <ul class="mod-list main-list">
+              <li><a class="down" href="http://news.163.com/special/tiedaobugaoguan/">原昆明铁路局局长伙同情妇受贿1500万元案开审</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/02/99LQO8L400014AEE.html">温州回应“1.5万套房断供”：断供房弃房595套</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/09/99MJ26SF00014JB6.html">新一轮成品油下调成定局 每吨下调200元左右</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/02/99LR5DIN0001124J.html">陕西南部频现毒蜂杀人:农妇稻田边被蜇200针</a></li>
+              <li><a class="down" href="http://auto.163.com/photoview/2EI00008/160774.html#fr=new1">多图解析"李亚鹏送王菲"的平衡车</a></li>
+            </ul>
+          </div>
+          <div class="clr"></div>
+        </div>
+        <div class="pt">
+          <h3 class="bigsize"><a class="up" href="http://news.163.com/13/0926/02/99LQNFV700014AED.html">19省公开社会抚养费数额 最高33亿最低350万</a></h3>
+          <div class="pt-info">
+            <a href="javascript" class="block">
+              <div class="pt-pic">
+                 <img src="http://img.mihuwa.com/mhwimg/2012/09/113841390114afded1l-150x150.jpg" class="site-logo" alt="新闻中心">
+              </div>
+              <div class="pt-title">
+                <h3 href="http://www.mihuwa.com/site/handwork/">新闻中心</h3>
+              </div>
+            </a>
+          </div>
+          <div class="pt-sub">
+            <ul class="mod-list main-list">
+              <li><a class="down" href="http://news.163.com/special/tiedaobugaoguan/">原昆明铁路局局长伙同情妇受贿1500万元案开审</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/02/99LQO8L400014AEE.html">温州回应“1.5万套房断供”：断供房弃房595套</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/09/99MJ26SF00014JB6.html">新一轮成品油下调成定局 每吨下调200元左右</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/02/99LR5DIN0001124J.html">陕西南部频现毒蜂杀人:农妇稻田边被蜇200针</a></li>
+              <li><a class="down" href="http://auto.163.com/photoview/2EI00008/160774.html#fr=new1">多图解析"李亚鹏送王菲"的平衡车</a></li>
+            </ul>
+          </div>
+          <div class="clr"></div>
+        </div>
+        <div class="pt">
+          <h3 class="bigsize"><a class="up" href="http://news.163.com/13/0926/02/99LQNFV700014AED.html">19省公开社会抚养费数额 最高33亿最低350万</a></h3>
+          <div class="pt-info">
+            <a href="javascript" class="block">
+              <div class="pt-pic">
+                 <img src="http://img.mihuwa.com/mhwimg/2012/09/113841390114afded1l-150x150.jpg" class="site-logo" alt="新闻中心">
+              </div>
+              <div class="pt-title">
+                <h3 href="http://www.mihuwa.com/site/handwork/">新闻中心</h3>
+              </div>
+            </a>
+          </div>
+          <div class="pt-sub">
+            <ul class="mod-list main-list">
+              <li><a class="down" href="http://news.163.com/special/tiedaobugaoguan/">原昆明铁路局局长伙同情妇受贿1500万元案开审</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/02/99LQO8L400014AEE.html">温州回应“1.5万套房断供”：断供房弃房595套</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/09/99MJ26SF00014JB6.html">新一轮成品油下调成定局 每吨下调200元左右</a></li>
+              <li><a class="down" href="http://news.163.com/13/0926/02/99LR5DIN0001124J.html">陕西南部频现毒蜂杀人:农妇稻田边被蜇200针</a></li>
+              <li><a class="down" href="http://auto.163.com/photoview/2EI00008/160774.html#fr=new1">多图解析"李亚鹏送王菲"的平衡车</a></li>
+            </ul>
+          </div>
+          <div class="clr"></div>
+        </div>
+
+
+
+      </div>
+
+    </div>
+    <% end %>
+
+  </div>
+</div>

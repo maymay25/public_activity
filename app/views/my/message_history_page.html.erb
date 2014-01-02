@@ -1,0 +1,515 @@
+<div class="center_wrap">
+
+  <%= render partial:'/center/basic_info' %>
+
+  <div class="layout_wrap">
+    <div class="container">
+      <div class="ihome_forum_group ihome_section clearfix">
+          <h1 class="ihome_title">
+            <span class="cut_line">|</span>与 <%= @u2.nickname %> 的对话
+          </h1>
+          <div class="clearfix u-f-wrap mgT10">
+
+            <div class="msg_dialogue">
+
+              <div class="send_private_msgbox" id="publishBox">
+                 <div class="send_private_msgno">
+                     <div class="senc_input_box">
+                         <textarea class="W_input" id="preInput" placeholder="发私信" title="输入要发送的私信"></textarea>
+                     </div>
+                 </div>
+                 <div class="send_private_msg">
+                    <div class="clearfix">
+                      <div class="title"><em class="icon_mes"></em>发私信给：<a class="up" target="_blank" href="/<%= @u2.id %>"><%= @u2.nickname %></a></div>
+                      <div class="S_line2 content">
+                        <div class="R_msg">
+                          <div class="private_operate">
+                            <textarea class="textarea" id="publishInput"></textarea>
+                          </div>
+                          <div class="send_handle clearfix">
+                            <div class="btn_s">
+                              <a href="javascript:void(0);" onclick="javascript:send_private_chat(this);" uid="<%= @u2.id %>" class="W_btn_b btn_noloading">
+                                <span>
+                                  <b class="loading"></b>
+                                  <em node-type="send_private_msg_btn">发送</em>
+                                </span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="arrow"></div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+
+              <% tmp_time = nil %>
+              <% @chats.each do |chat| %>
+              <% chat_time = chat.created_at.strftime('%Y-%m-%d') %>
+                <% if tmp_time!=chat_time %>
+                  <% tmp_time = chat_time %>
+                  <fieldset class="S_line2 msg_time_line">
+                    <legend class="time_tit S_txt3"><%= tmp_time + chat.created_at.strftime(" %H:%M") %></legend>
+                  </fieldset>
+                <% end %>
+                <% if chat.is_in %>
+                  <div class="msg_dialogue_list msg_dialist_r clearfix">
+                    <div class="msg_dialist_box clearfix">
+                      <div class="msg_dialist_pic">
+                        <a href="/<%= @u2.id %>" class="dialist_pic_box">
+                          <img src="<%= @u2.avatar_path.normal.url %>" rescue="<%= @u2.avatar_path.normal.default_url %>" alt="" width="50" height="50"></a>
+                      </div>
+                      <div class="msg_dialist_content S_line1 S_bg1">
+                        <div class="msg_arrow"> <em class="S_line1_c">◆</em>
+                          <span class="S_bg1_c">◆</span>
+                        </div>
+                        <div class="msg_dialist_main">
+                          <div class="msg_diamain_box">
+                            <div class="msg_diamain_con clearfix">
+                              <div class="msg_dia_con">
+                                <%= simple_format chat.content %>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% else %>
+                  <div class="msg_dialogue_list msg_dialist_l clearfix">
+                    <div class="msg_dialist_box clearfix">
+                      <div class="msg_dialist_pic">
+                        <a href="/<%= @u.id %>" class="dialist_pic_box">
+                          <img src="<%= @u.avatar_path.normal.url %>" rescue="<%= @u.avatar_path.normal.default_url %>" alt="" width="50" height="50"></a>
+                      </div>
+                      <div class="msg_dialist_content S_line2 S_bg5">
+                        <div class="msg_arrow">
+                          <em class="S_line2_c">◆</em>
+                          <span class="S_bg5_c">◆</span>
+                        </div>
+                        <div class="msg_dialist_main">
+                          <div class="msg_diamain_box">
+                            <div class="msg_diamain_con clearfix">
+                              <div class="msg_dia_con">
+                                <%= simple_format chat.content %>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+
+              <div class="pagination_wrap">
+                <%= paginate @chats,inner_window:3,outer_window:1 %>
+              </div>
+            </div>
+
+          </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<% content_for :bodyScript do %>
+<script src="<%= static_url "/assets/js/view/page.center.message_history.js" %>"></script>
+<% end %>
+
+
+<style>
+textarea {
+resize: none;
+}
+.S_line2 {
+border-color: #e6e6e6;
+}
+.S_txt3 {
+color: #aeaeae;
+}
+.S_line1_c {
+color: #e0d7bf;
+}
+.S_line2_c {
+color: #e6e6e6;
+}
+.S_bg1_c {
+color: #f2f2f2;
+}
+.S_bg5 {
+background-color: #ffffff;
+}
+.S_bg5_c {
+color: #ffffff;
+}
+.S_line1 {
+border-color: #e0d7bf;
+}
+.S_bg1, a.W_gotop, .SW_fun_bg {
+background-color: #f2f2f2;
+}
+
+.send_private_msgbox {
+
+}
+
+.send_private_msgbox .send_private_msg{
+height: 0px;
+overflow: hidden;
+zoom: 1;
+}
+
+.send_private_msgbox .send_private_msg .title{
+line-height: 12px;
+font-size: 12px;
+}
+
+.send_private_msgbox.active .send_private_msg{
+height: auto;
+}
+
+.send_private_msgbox.active .send_private_msgno{
+display:none;
+}
+
+.send_private_msgbox .send_private_msgno .senc_input_box textarea {
+color: #595959;
+height: 24px;
+overflow: hidden;
+width: 490px;
+border: 1px solid #c6c6c6;
+padding: 4px 4px 0;
+font-size: 12px;
+line-height: 18px;
+font-family: Tahoma, "SimSun";
+border-radius: 3px;
+}
+
+.title .icon_mes {
+vertical-align: middle;
+margin-right: 5px;
+}
+.icon_mes {
+display: inline-block;
+width: 12px;
+height: 12px;
+overflow: hidden;
+background: url("/assets/site2/msg_icon.png");
+_background: url("/assets/site2/msg_icon.gif");
+}
+
+.send_private_msg .content {
+border-radius: 5px 5px 5px 5px;
+line-height: 22px;
+margin: 5px 0;
+position: relative;
+width: 496px;
+word-wrap: break-word;
+}
+.send_private_msg .R_msg {
+padding-bottom: 5px;
+}
+.send_private_msg .private_operate {
+background: #FFFFFF;
+border: solid 1px #ccc;
+box-shadow: 1px 1px 1px 0px #ddd inset;
+border-radius: 2px;
+height: 78px;
+zoom: 1;
+}
+.send_private_msg .textarea {
+line-height: 16px;
+overflow-y: hidden;
+width: 486px;
+height: 70px;
+border: none;
+padding: 4px;
+}
+
+.send_private_msg .send_handle {
+padding: 5px 0 0 0;
+}
+.send_private_msg .send_handle .btn_s {
+float: right;
+}
+.W_btn_b, .W_btn_c, .W_btn_e, .W_btn_f, .W_btn_round, .W_btn_round_ico, .W_btn_round2, .W_btn_a_disable, .W_btn_a_disable:hover, .W_btn_b_disable, .W_btn_b_disable:hover, .W_btn_c_disable, .W_btn_c_disable:hover, .W_btn_d_disable, .W_btn_d_disable:hover, .W_btn_v_disable, .W_btn_v_disable:hover, .W_btn_e_disable, .W_btn_e_disable:hover, .W_btn_f_disable, .W_btn_f_disable:hover, .W_btn_g_disable, .W_btn_g_disable:hover, .W_btn_a_disable span, .W_btn_a_disable:hover span, .W_btn_b_disable span, .W_btn_b_disable:hover span, .W_btn_c_disable span, .W_btn_c_disable:hover span, .W_btn_d_disable span, .W_btn_d_disable:hover span, .W_btn_v_disable span, .W_btn_v_disable:hover span, .W_btn_e_disable span, .W_btn_e_disable:hover span, .W_btn_f_disable span, .W_btn_f_disable:hover span, .W_btn_g_disable span, .W_btn_g_disable:hover span {
+border-color: #d9d9d9;
+background-color: #f2f2f2;
+}
+.W_btn_b {
+display: inline-block;
+border-width: 1px;
+border-style: solid;
+border-radius: 2px;
+overflow: hidden;
+vertical-align: middle;
+cursor: pointer;
+border-color: #d9d9d9;
+background-color: #f2f2f2;
+}
+
+.W_btn_a:hover, 
+.W_btn_d:hover, 
+.W_btn_b:hover, 
+.W_btn_a:hover span, 
+.W_btn_d:hover span, 
+.W_btn_b:hover span {
+text-decoration: none;
+background: rgb(255,184,71);
+background: -moz-linear-gradient(top, rgba(255,184,71,1) 0%, rgba(255,162,16,1) 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,184,71,1)), color-stop(100%,rgba(255,162,16,1)));
+background: -webkit-linear-gradient(top, rgba(255,184,71,1) 0%,rgba(255,162,16,1) 100%);
+background: -o-linear-gradient(top, rgba(255,184,71,1) 0%,rgba(255,162,16,1) 100%);
+background: -ms-linear-gradient(top, rgba(255,184,71,1) 0%,rgba(255,162,16,1) 100%);
+background: linear-gradient(top bottom, rgba(255,184,71,1) 0%,rgba(255,162,16,1) 100%);
+}
+.W_btn_a .loading, 
+.W_btn_a_disable .loading, 
+.W_btn_d .loading, 
+.W_btn_d_disable .loading, 
+.W_btn_b .loading, 
+.W_btn_b_disable .loading, 
+.W_btn_c .loading, 
+.W_btn_c_disable .loading, 
+.W_btn_e_disable .loading, 
+.W_btn_g .loading {
+background: url("/assets/site2/loading.gif?id=1370232467958") no-repeat;
+float: left;
+width: 15px;
+height: 15px;
+margin: 2px 4px 0 0;
+_margin-right: 0;
+}
+.W_btn_a, 
+.W_btn_d, 
+.W_btn_b:hover {
+border-width: 1px;
+border-style: solid;
+border-color: #ff9b01;
+background-color: #ffa00a;
+color: #fff;
+border-radius: 2px;
+display: inline-block;
+overflow: hidden;
+vertical-align: middle;
+cursor: pointer;
+}
+.W_btn_a:hover span, 
+.W_btn_d:hover span, 
+.W_btn_b:hover span {
+border-width: 1px;
+border-style: solid;
+border-color: #ffce82;
+color: #fff;
+}
+.W_btn_a span, 
+.W_btn_a_disable span, 
+.W_btn_b span, 
+.W_btn_b_disable span, 
+.W_btn_c span, 
+.W_btn_c_disable span, 
+.W_btn_d span, 
+.W_btn_d_disable span, 
+.W_btn_v span, 
+.W_btn_v_disable span {
+padding: 0 9px 0 10px;
+white-space: nowrap;
+display: inline-block;
+border-style: solid;
+border-width: 1px;
+border-radius: 2px;
+height: 18px;
+line-height: 18px;
+}
+
+.W_btn_b span, 
+.W_btn_c span, 
+.W_btn_e span, 
+.W_btn_f span, 
+.W_btn_round span, 
+.W_btn_round2 span, 
+.W_btn_round_ico span, 
+.W_btn_a_disable span, 
+.W_btn_a_disable:hover span, 
+.W_btn_b_disable span, 
+.W_btn_b_disable:hover span, 
+.W_btn_c_disable span, 
+.W_btn_c_disable:hover span, 
+.W_btn_d_disable span, 
+.W_btn_d_disable:hover span, 
+.W_btn_v_disable span, 
+.W_btn_v_disable:hover span, 
+.W_btn_e_disable span, 
+.W_btn_e_disable:hover span, 
+.W_btn_f_disable span, 
+.W_btn_f_disable:hover span, 
+.W_btn_g_disable span, 
+.W_btn_g_disable:hover span {
+border-color: #ffffff;
+color: #333333;
+}
+
+.W_btn_b span {
+font-size: 12px;
+border-color: #ffffff;
+color: #333333;
+}
+
+.btn_noloading .loading {
+display: none;
+}
+
+.msg_dialogue {
+line-height: 22px;
+margin-top: 16px;
+padding: 0 20px;
+width: 560px;
+}
+
+fieldset {
+display: block;
+padding: 0 0 0 20px;
+border-style: solid;
+border-width: 1px 0 0 0;
+}
+.msg_time_line {
+margin: 5px 65px 25px;
+_margin-bottom: 0;
+text-align: center;
+padding: 0 0 0 148px;
+_padding-bottom: 25px;
+}
+fieldset legend {
+padding: 0 5px;
+font-weight: bold;
+}
+.msg_time_line .time_tit {
+width: 120px;
+text-align: center;
+font-weight: 400;
+}
+.msg_dialogue_list {
+margin-bottom: 20px;
+}
+
+.msg_dialist_l .msg_dialist_pic {
+float: left;
+_margin-right: 15px;
+}
+.msg_dialist_r .msg_dialist_pic {
+float: right;
+}
+.msg_dialist_l .msg_dialist_content {
+float: left;
+margin-left: 15px;
+_margin-left: 0;
+}
+.msg_dialist_r .msg_dialist_content {
+float: right;
+margin-right: 15px;
+}
+
+.msg_dialogue_list .msg_dialist_pic {
+width: 50px;
+height: 50px;
+}
+
+.msg_dialogue_list .msg_dialist_content {
+border-width: 1px;
+border-style: solid;
+border-radius: 5px;
+position: relative;
+zoom: 1;
+box-shadow: 0 3px 3px rgba(0,0,0,.05);
+}
+
+.msg_dialogue_list .msg_dialist_pic .dialist_pic_box {
+display: block;
+width: 50px;
+height: 50px;
+position: relative;
+zoom: 1;
+}
+
+.msg_dialogue_list .msg_dialist_content .msg_arrow {
+position: absolute;
+top: 15px;
+width: 10px;
+overflow: hidden;
+}
+.msg_dialist_r .msg_arrow {
+right: -10px;
+}
+.msg_dialist_l .msg_arrow {
+left: -10px;
+}
+
+.msg_dialogue_list .msg_dialist_content .msg_arrow * {
+font-family: "SimSun";
+overflow: hidden;
+font-size: 20px;
+line-height: 1.231;
+display: block;
+height: 20px;
+}
+.msg_dialist_r .msg_arrow * {
+margin-left: -10px;
+}
+.msg_dialist_r .msg_arrow span {
+margin: -20px 0 0 -11px;
+}
+.msg_dialist_l .msg_arrow span {
+margin: -20px 0 0 1px;
+}
+
+.msg_dialogue_list .msg_dialist_content {
+border-width: 1px;
+border-style: solid;
+border-radius: 5px;
+position: relative;
+zoom: 1;
+box-shadow: 0 3px 3px rgba(0,0,0,.05);
+}
+.msg_dialogue_list .msg_dialist_content .msg_dialist_main {
+border-radius: 5px;
+}
+.msg_dialogue_list .msg_dialist_content .msg_diamain_box {
+width: 388px;
+padding: 8px 10px;
+}
+.msg_delete_box {
+display: none;
+float: left;
+overflow: hidden;
+}
+.msg_delete_box .input_che {
+margin: 4px 5px 0 0;
+vertical-align: middle;
+}
+.msg_dialogue_list .msg_dialist_content .hover {
+visibility: hidden;
+_visibility: visible;
+}
+.msg_dialogue_list .msg_ctrl {
+position: absolute;
+top: 5px;
+right: 5px;
+zoom: 1;
+}
+.icon_choose {
+background-position: -75px -75px;
+}
+.W_ico12 {
+display: inline-block;
+width: 12px;
+height: 12px;
+background-image: url("http://img.t.sinajs.cn/t5/style/images/common/icon.png?id=1383793473405");
+_background-image: url("http://img.t.sinajs.cn/t5/style/images/common/icon.gif?id=1383793473405");
+background-repeat: no-repeat;
+}
+
+
+</style>

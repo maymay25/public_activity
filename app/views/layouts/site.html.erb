@@ -1,0 +1,204 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title><%= @page_title || "随心社区-自由自在的休闲网络社区" %></title>
+  <meta charset=utf-8>
+  <meta content="<%= @page_description %>" name="description">
+  <meta content="<%= @page_keywords %>" name="keywords">
+  <link rel="stylesheet" type="text/css" href="<%= static_url "/assets/soundmanager/inlineplayer.css" %>" />
+
+	<script type="text/javascript" src="<%= static_url "/assets/soundmanager/soundmanager2-jsmin.js" %>"></script>
+	<script type="text/javascript" src="<%= static_url "/assets/soundmanager/inlineplayer.js" %>"></script>
+
+  <script type="text/javascript" src="<%= static_url "/assets/js/lib/jquery.js" %>"></script>
+  <link href="<%= static_url "/assets/css/bootstrap.css" %>" rel="stylesheet">
+  <link href="<%= static_url "/assets/diy1/diy1.css" %>" rel="stylesheet">
+  <script type="text/javascript" src="<%= static_url "/assets/diy1/diy1.js" %>"></script>
+  <link rel='icon' type='image/png' href='/favicon.ico'>
+
+</head>
+<body class="theme1">
+
+<div id="LOADING"></div>
+<style type="text/css">#LOADING{width: 10%;}</style>
+
+<div id="TOP">
+  <div class="forbg">
+    <div class="frame-top container">
+      <div class="frame-logo" id="frame-logo">
+        <a href="javascript:;" class="top_logo"></a>
+      </div>
+      <div class="frame-nav">
+        <ul>
+          <li>
+            <a href="javascript:;">首页</a>
+          </li>
+          <li>
+            <a href="javascript:;">资讯</a>
+          </li>
+          <li>
+            <a href="javascript:;">个人中心</a>
+          </li>
+        </ul>
+      </div>
+      <div id="searchA">
+        <div class="searchA fl cc">
+          <form action="searcher.php" method="post" onsubmit="javascript:return false;">
+            <input type="hidden" value="33e13a3e" name="verify">
+            <input value="2" type="hidden" name="step">
+            <input value="thread" type="hidden" id="search_type" name="type">
+            <div class="ip">
+              <input id="search_input" type="text" placeholder="搜索其实很简单！" class="gray" name="keyword" onfocus="searchFocus(this)" onblur="searchBlur(this)"></div>
+            <button type="submit" class="cp fl"></button>
+          </form>
+        </div>
+        <ul class="frame-box">
+          <li>
+            <a href="javascript:;">军事新闻</a>
+          </li>
+          <li>
+            <a href="javascript:;">汽车新闻</a>
+          </li>
+          <li>
+            <a href="javascript:;">社会新闻</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="sl-fixed sl-fixed-top nav_list yczx" id="GenreMoreLinks">
+    <div class="nav_list_con">
+      <div class="view-hover" invokename="导航链接3@顶部导航" altname="导航链接3@顶部导航" channelid="topnav">
+        <dl>
+          <dt>娱乐、休闲</dt>
+          <dd>
+            <a href="javascript:;">娱乐八卦</a>
+            <a href="javascript:;">五花八门</a>
+            <a href="javascript:;">搞笑视频</a>
+            <a href="javascript:;">色系军团</a>
+            <a href="javascript:;">音乐天堂</a>
+            <a href="javascript:;">游戏天地</a>
+            <a href="javascript:;">影视专区</a>
+            <a href="javascript:;">十二星座</a>
+            <a href="javascript:;">明星档案</a>
+            <a href="javascript:;">穿越火线</a>
+            <a href="javascript:;">搞笑图片</a>
+            <a href="javascript:;">奇闻趣事</a>
+          </dd>
+        </dl>
+        <div class="c"></div>
+      </div>
+    </div>
+    <div class="nav_list_con">
+      <div class="view-hover" invokename="导航链接2@顶部导航" altname="导航链接2@顶部导航" channelid="topnav">
+        <dl>
+          <dt>生活、经验</dt>
+          <dd>
+            <a href="javascript:;">美食厨房</a>
+            <a href="javascript:;">数码世界</a>
+            <a href="javascript:;">旅游户外</a>
+            <a href="javascript:;">家有宠物</a>
+            <a href="javascript:;">电脑知识</a>
+            <a href="javascript:;">母婴育儿</a>
+            <a href="javascript:;">健康频道</a>
+            <a href="javascript:;">拉风汽车</a>
+            <a href="javascript:;">体坛风云</a>
+            <a href="javascript:;">手机交流</a>
+            <a href="javascript:;">曝光台</a>
+            <a href="javascript:;">生活常识</a>
+          </dd>
+        </dl>
+        <div class="c"></div>
+      </div>
+    </div>
+    <div class="nav_list_con">
+      <div class="view-hover" invokename="导航链接1@顶部导航" altname="导航链接1@顶部导航" channelid="topnav">
+        <dl>
+          <dt>时尚</dt>
+          <dd>
+            <a href="javascript:;">女装搭配</a>
+            <a href="javascript:;">女生发型</a>
+            <a href="javascript:;">丽人妆颜</a>
+            <a href="javascript:;">我爱购物</a>
+            <a href="javascript:;">美体塑形</a>
+            <a href="javascript:;">明星榜样</a>
+            <a href="javascript:;">婚嫁地带</a>
+            <a href="javascript:;">家居装修</a>
+            <a href="javascript:;">减肥吧</a>
+          </dd>
+        </dl>
+        <div class="c"></div>
+      </div>
+    </div>
+  </div>
+  <div class="forbd">&nbsp;</div>
+  <div class="forld"></div>
+</div>
+
+<style type="text/css">#LOADING{width: 30%;background:#d75a00;}</style>
+
+<div class="themeBg">
+
+  <div id="HEADER" class="container main-sub">
+    <a href="http://www.qumaomao.com/" class="logo fl"></a>
+    <div class="oauth2">
+        <p>你可以使用以下账号登录：</p>
+        <div class="clr links">
+          <a class="weibo" title="新浪微博" href="javascript:open_oauth2_window('/login/weibo_login');">&nbsp;</a>
+          <a class="qqsite" title="腾讯QQ" href="javascript:open_oauth2_window('/login/qq_login');">&nbsp;</a>
+          <a class="kaixin" title="开心网" href="javascript:open_oauth2_window('/login/kaixin_login');">&nbsp;</a>
+          <a class="renren" title="人人网" href="javascript:open_oauth2_window('/login/renren_login');">&nbsp;</a>
+          <a class="douban" title="豆瓣网" href="javascript:open_oauth2_window('/login/douban_login');">&nbsp;</a>
+        </div>
+    </div>
+  </div>
+
+  <%= yield %>
+
+</div>
+
+<style type="text/css">#LOADING{width: 70%;background:#dcd220;}</style>
+
+<div class="footer-wrap">
+  <div id="footer" class="container">
+    <div class="mb5">
+      <div class="bottom tac">
+        <span class="mr10">
+          <a rel="nofollow" href="http://www.qumaomao.com/read-htm-tid-1933.html" target="_blank">关于随心社区</a>
+        </span>
+        ·
+        <span class="mr10">
+          <a rel="nofollow" href="http://www.qumaomao.com/read-htm-tid-1346.html">联系我们</a>
+        </span>
+        ·
+        <span class="mr10">
+          <a rel="nofollow" href="/faq.php" target="_blank">帮助中心</a>
+        </span>
+        ·
+        <span class="mr10">
+          <a href="http://www.qumaomao.com/sitemap.php" target="_blank">网站地图</a>
+        </span>
+      </div>
+    </div>
+    <div class="f10 s6 tac">
+      <p class="mb5">
+        ©2013 Powered by suixin365.com
+        <a href="http://www.qumaomao.com/" target="_blank">随心社区</a>
+        版权所有
+        <a href="http://www.cnzz.com/stat/website.php?web_id=1000035575" target="_blank" title="站长统计">
+          <img border="0" hspace="0" vspace="0" src="http://icon.cnzz.com/pic1.gif">
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="bodyScript">
+  <%= yield(:bodyScript) if content_for? :bodyScript %>
+</div>
+
+<style type="text/css">#LOADING{width: 90%;background:#4dc20;}</style>
+</body>
+
+</html>
+

@@ -1,0 +1,401 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>个人设置-设置个人头像</title>
+  <link href="http://css1.xmcdn.com/css/web.css?1380278470" rel="stylesheet" type="text/css">
+  <link href="jquery.Jcrop.css?1380278470" rel="stylesheet" type="text/css" />
+  <script src="require.js"></script>
+
+    <style>
+
+        .set_container .set_avatar .set_avatar_handle .photo_180 {
+        width: 180px;
+        height: 180px;
+        border: 1px solid #ccc;
+        overflow: hidden;
+        }
+
+        .set_container .set_avatar .set_avatar_handle .photo_60 {
+        width: 60px;
+        height: 60px;
+        border: 1px solid #ccc;
+        overflow: hidden;
+        }
+
+        .set_container .set_avatar .set_avatar_handle .photo_30 {
+        width: 30px;
+        height: 30px;
+        border: 1px solid #ccc;
+        overflow: hidden;
+        }
+
+        .abcdef {
+          color: #d60;
+          font-size: 13px;
+        }
+
+        .c777 {
+          color:#777;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+  <!--主体 start-->
+  <div>
+
+    <div class="mainbox">
+      <div class="mainbox_wrapper">
+        <div class="set_container">
+          <div class="set_right">
+            <div class="set_title">头像设置</div>
+            <div class="set_avatar">
+              <div class="set_avatar_operate">
+                <div>建议上传640*640像素，5M以下的图片</div>
+                <a class="localphotoBtn" id="local_photo"></a>
+                <a class="uploadphotoBtn" id="photo_upload"></a>
+              </div>
+              <div id="photo_handle" class="set_Inner ">
+                <div class="set_avatar_handle">
+                  <div class="set_avatar_left">
+                    <div class="photo_260">
+                      <div class="img-container" id="img_photo_container">
+                        <img id="img_photo" src="/assets/img/upload_tips.jpg" />
+                      </div>
+                    </div>
+                  </div>
+                  <ul class="set_avatar_right" style="border-left: 1px solid #ddd;padding-left: 20px;">
+                    <li class="abcdef">您上传的头像会自动生成以下几种尺寸<br>请注意头像是否清晰</li>
+                    <li>
+                      <div class="set_avatar_left">
+                        <div class="photo_180">
+                          <img src="/assets/avatars/user/large_male.png" alt="" id="preview_180"/>
+                        </div>
+                        <p class="c777">大尺寸头像，180像素</p>
+                      </div>
+
+                      <div class="set_avatar_right" style="width:70px;">
+                        <div class="photo_60">
+                          <img src="/assets/avatars/user/normal_male.png" alt="" id="preview_60"/>
+                        </div>
+                        <p class="c777">中尺寸头像 60像素</p>
+                        <div class="photo_30" style="margin-top: 25px;margin-left: 14px;">
+                          <img src="/assets/avatars/user/small_male.png" alt="" id="preview_30"/>
+                        </div>
+                        <p class="c777">小尺寸头像 30像素</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="set_operate">
+                  <form method="post" action="/user/save_avatar">
+                    <input type="hidden" name="cache_name" value="" id="cache_name">
+                    <input type="hidden" name="crop_w" id="upload_w">
+                    <input type="hidden" name="crop_h" id="upload_h">
+                    <input type="hidden" name="crop_x" id="upload_x">
+                    <input type="hidden" name="crop_y" id="upload_y">
+                    <input type="hidden" name="crop_ow" id="upload_ow">
+                    <input type="hidden" name="crop_oh" id="upload_oh">
+                    <a class="confirmBtn" href="javascript:;" id="submit_btn">保存设置</a>
+                    <a class="cancelBtn" href="javascript:;">取消</a>
+                  </form>
+                </div>
+              </div>
+
+              <div id="photo_shoot" class="set_avatar_takephoto hidden">
+                <div class="set_avatar_control" id="snapshot_warp"></div>
+                <div class="set_operate">
+                  <a class="confirmBtn" id="take_snapshot" href="javascript:;">拍照</a>
+                  <a class="cancelBtn" href="javascript:;">取消</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script type="text/javascript">
+require([
+    'jquery',
+    'helper',
+    'swfupload.queue',
+    'jquery.jcrop',
+    'webcam'],
+    function ($) {
+
+        $.ajaxSetup({
+                beforeSend: function(xhr, settings) {
+                    // 防止伪造攻击
+                    var token = $('meta[name="csrf-token"]').attr('content');
+                    if (token) xhr.setRequestHeader('X-CSRF-Token', token);
+                }
+        });
+
+        var img_upload_url = "/user/upload_crop_avatar";
+
+        var $img_photo = $("#img_photo"),
+            $img_photo_container = $("#img_photo_container"),
+            $photo_handle = $("#photo_handle"),
+            $photo_shoot = $('#photo_shoot'),
+            $preview_180 = $("#preview_180"),
+            $preview_60 = $("#preview_60"),
+            $preview_30 = $("#preview_30"),
+            $trackUploadInfo = $("#trackUploadInfo"),
+            $cache_name = $("#cache_name");
+
+        var box_width = 260,
+            box_height = 260;
+
+
+
+        function uploadImgInit() {
+            var $imgUpload = $("#local_photo");
+            $imgUpload.css("position", "relative");
+            var text = $imgUpload.text();
+            $imgUpload.html('<div>' + text + '</div><div style="position: absolute;left:0;top:0;"><span id="imgUploadSwf"></span></div>');
+            var original_src = "";
+            var flash_url = "swfupload.swf";
+            var settings = {
+                flash_url:flash_url,
+                upload_url:img_upload_url,
+                file_size_limit:"5 MB",
+                file_types:"*.gif; *.jpg; *.png;*.jpeg;*.bmp;",
+                file_types_description:"Image Files",
+                debug:false,
+                file_queue_limit : 1,
+                button_width:$imgUpload.width(),
+                button_height:$imgUpload.height(),
+                button_placeholder_id:"imgUploadSwf", //"swfcontainer",
+                button_cursor:SWFUpload.CURSOR.HAND,
+                button_window_mode:SWFUpload.WINDOW_MODE.TRANSPARENT,
+                file_dialog_complete_handler:function(numFilesSelected, numFilesQueued){
+                    if(numFilesSelected==0){
+                        return;
+                    }
+
+                    this.startUpload();
+                },
+                file_queue_error_handler:function(file, errorCode, message){
+                    if(errorCode ==  SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED){
+                        alert("选择一张图片上传");
+                    }
+                    if(errorCode ==  SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT){
+                        alert("图片最大不超过5M");
+                    }
+                    return;
+                },
+                upload_start_handler:function(file){
+                    ImageCut.prepare();
+                },
+                upload_success_handler:function (file, str_data) {
+                    var data = $.parseJSON(str_data);
+                    if (data.msg) {
+                        alert(data.msg);
+                        return;
+                    }
+                    var cache_name = data.cache_name,
+                        img_src = data.img_src;
+
+                    var img = new Image();
+                    img.onload = function(){
+                        ImageCut.init(img_src, img.width, img.height,cache_name);
+                    };
+                    img.src = img_src;
+                }
+            };
+            new SWFUpload(settings);
+            return;
+
+        }
+
+        var ImageCut = {
+            width:260,
+            height:260,
+            init:function(src, width, height, cache_name){
+                if(!src || !width || !height) return;
+                $cache_name.val(cache_name);
+                this.width = width;
+                this.height = height;
+                $img_photo_container.css({
+                    left:(box_width-width)/2,
+                    top:(box_height-height)/2,
+                    width:width,
+                    height:height
+                });
+                $img_photo.attr("src", src);
+                if(!cache_name) return;
+                $preview_180.attr("src", src);
+                $preview_60.attr("src", src);
+                $preview_30.attr("src", src);
+
+                var _this = this;
+                var select = [
+                    width/2 - 100,
+                    height/2 - 100,
+                    width/2 + 100,
+                    height/2 + 100
+                ];
+                $img_photo.Jcrop({
+                    onChange: function(coords){
+                        _this.onChange(coords);
+                    },
+                    onSelect:function(coords){
+                        _this.onChange(coords);
+                    },
+                    setSelect:select,
+                    minSize : [30, 30],
+                    aspectRatio: 1,
+                    bgOpacity:0.5
+                },function(){
+                    _this.jcrop_api = this;
+                });
+            },
+            prepare:function(){
+                $photo_handle.show();
+                $photo_shoot.hide();
+
+                ImageCut.destroy();
+            },
+
+            destroy:function(){
+                if(this.jcrop_api){
+                    this.jcrop_api.destroy();
+                }
+            },
+            release:function(){
+                if(this.jcrop_api){
+                    this.jcrop_api.release();
+                }
+            },
+            onChange:function(coords){
+
+                if (parseInt(coords.w) > 0)
+                {
+                    this.showPreview($preview_180, 180, 180, coords);
+                    this.showPreview($preview_60, 60, 60, coords);
+                    this.showPreview($preview_30, 30, 30, coords);
+
+                    $("#upload_w").val(parseInt(coords.w));
+                    $("#upload_h").val(parseInt(coords.h));
+                    $("#upload_x").val(parseInt(coords.x));
+                    $("#upload_y").val(parseInt(coords.y));
+                    $("#upload_ow").val(this.width);
+                    $("#upload_oh").val(this.height);
+                }
+            },
+            showPreview:function(el, w, h, coords){
+                var ox = this.width,
+                    oy = this.height;
+                var rx = w / coords.w;
+                var ry = h / coords.h;
+                el.css({
+                    width: Math.round(rx * ox) + 'px',
+                    height: Math.round(ry * oy) + 'px',
+                    marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+                    marginTop: '-' + Math.round(ry * coords.y) + 'px'
+                });
+
+            }
+        };
+        $("#photo_upload").click(function(){
+            shoot.init();
+        });
+        var taking_photo = true;
+        $("#take_snapshot").click(function(){
+            if(taking_photo) return;
+            shoot.snap();
+            taking_photo = true;
+        });
+        var shoot = {
+            inited:false,
+            init:function(){
+                if(!this.inited){
+                    console.info( webcam.set_hook('onLoad','') )
+                    if(!webcam.set_hook( 'onLoad', '' )){
+                        return alert('未检测到摄像设备');
+                    }
+
+                    $photo_handle.hide();
+                    $photo_shoot.show();
+
+                    var config = {
+                        TOKEN_LABEL:"TOKEN_LABEL",
+                        REMEMBERME_LABEL:"REMEMBERME_LABEL"
+                    };
+                    webcam.set_swf_url("webcam.swf?_t="+new Date().getTime());
+                    webcam.set_api_url(img_upload_url+"?"+"token="+readCookie(config.TOKEN_LABEL)+ "&rememberMe="+readCookie(config.REMEMBERME_LABEL));
+                    webcam.set_quality( 90 );
+                    webcam.set_shutter_sound(false);
+                    $("#snapshot_warp").html(webcam.get_html(box_width, box_height, box_width, box_height, "transparent"));
+                    webcam.set_hook( 'onLoad', this.onLoad );
+                    webcam.set_hook( 'onComplete', this.onComplete );
+                }else{
+                    $photo_handle.hide();
+                    $photo_shoot.show();
+                    webcam.reset();
+                }
+                this.inited = true;
+            },
+            onComplete:function(data){
+                data = $.parseJSON(data);
+                if(data.status){
+                    ImageCut.prepare();
+                    ImageCut.init(image_domain+"/"+data.data[0].processResult[260],260, 260,data.data[0].uploadTrack.id );
+                }
+                taking_photo = false;
+            },
+            onLoad:function(){
+                taking_photo = false;
+            },
+            snap:function(){
+                webcam.snap();
+            }
+        };
+        function readCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0;i < ca.length;i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                if (c.indexOf(nameEQ) == 0) return encodeURIComponent(c.substring(nameEQ.length,c.length));
+                if(c.indexOf(nameEQ)!= -1){
+                    return encodeURIComponent(c.substring(c.indexOf("=")+1,c.length));
+                }
+            }
+            return null;
+        }
+        $("#submit_btn").click(function(){
+            $(this).parent().submit();
+        });
+        if($img_photo.attr("src")){
+            var src = $img_photo.attr("src");
+            var img = new Image();
+            img.onload = function(){
+                ImageCut.init(src, img.width, img.height);
+                img = null;
+            };
+            img.src = src;
+        }
+
+        var page = {
+            init:function(){
+                uploadImgInit();
+            }
+        };
+        return page.init();
+    });
+
+  </script>
+
+</body>
+</html>

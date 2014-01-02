@@ -1,0 +1,162 @@
+
+ul, li {
+list-style-type: none;
+}
+
+.videos-list{
+  margin-top:10px;
+  overflow:hidden;
+}
+
+.play-img {
+width: 110px;
+height: 150px;
+display: block;
+overflow: hidden;
+margin: 0 auto;
+margin-top: 16px;
+padding: 3px;
+position: relative;
+border: 1px solid #fff;
+background-color: #fff;
+}
+
+.play-img:hover {
+color: #fff;
+text-decoration: none;
+border-color: #317EE7;
+box-shadow: 0 1px 1px rgba(0,0,0,0.07);
+}
+
+.play-img img {
+width: 110px;
+height: 150px;
+display: block;
+overflow: hidden;
+background: url('http://www.suku.cc/template/sukuxinmobaa/images/lazyload.gif') no-repeat scroll center center transparent;
+}
+
+.fenlei {
+width: 138px;
+}
+
+.img-list li {
+width: 150px;
+height: 235px;
+overflow: hidden;
+float: left;
+border-right: 1px solid #eee;
+border-bottom: 1px solid #eee;
+}
+
+.img-list h5 {
+width: 110px;
+height: 22px;
+line-height: 22px;
+font-size: 14px;
+overflow: hidden;
+margin: 0 auto;
+margin-top: 4px;
+font-size: 14px;
+}
+
+
+
+/* Menu Widget ----------------------------------------------------------*/
+
+.widget_nav_menu {
+    background-color: #636f87;
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+    -webkit-box-shadow: 0 -1px 0 rgba(255,255,255,.45), 0 1px 2px rgba(0,0,0,.6);
+       -moz-box-shadow: 0 -1px 0 rgba(255,255,255,.45), 0 1px 2px rgba(0,0,0,.6);
+         -o-box-shadow: 0 -1px 0 rgba(255,255,255,.45), 0 1px 2px rgba(0,0,0,.6);
+            box-shadow: 0 -1px 0 rgba(255,255,255,.45), 0 1px 2px rgba(0,0,0,.6);
+    margin-bottom: 35px;
+    padding: 6px;
+}
+
+.widget_nav_menu ul { 
+    border-top: 1px solid #25272b;
+    border-bottom: 1px solid #8a93a5;
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+    margin: 0; 
+}
+
+.widget_nav_menu li { list-style: none; }
+
+.widget_nav_menu a {
+    background: #16191d url(/assets/lib/bg-menu.png) 0 0 repeat-x;
+    border-left: 1px solid #24262c;
+    border-right: 1px solid #24262c;
+    color: #abb2bf;
+    display: block;
+    padding: 8px 9px;
+    font-size: 13px;
+    line-height: 18px;
+}
+
+.widget_nav_menu a:hover,
+.widget_nav_menu .current-menu-item a,
+.widget_nav_menu .current_page_item a {
+    background: #16191d url(/assets/lib/bg-menu-hover.png) 0 0 repeat-x;
+    color: #fff;
+}
+
+.widget_nav_menu li:first-child a {
+    -webkit-border-radius: 3px 3px 0 0;
+       -moz-border-radius: 3px 3px 0 0;
+            border-radius: 3px 3px 0 0;
+}
+
+.widget_nav_menu li:last-child a {
+    -webkit-border-radius: 0 0 3px 3px;
+       -moz-border-radius: 0 0 3px 3px;
+            border-radius: 0 0 3px 3px;
+}
+
+.cbody {
+    width:950px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.lib_frame {
+    float:left;
+    margin: 10px;   
+    background-color: #636f87;
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+    -webkit-box-shadow: 0 -1px 0 rgba(255,255,255,.45), 0 1px 2px rgba(0,0,0,.6);
+       -moz-box-shadow: 0 -1px 0 rgba(255,255,255,.45), 0 1px 2px rgba(0,0,0,.6);
+         -o-box-shadow: 0 -1px 0 rgba(255,255,255,.45), 0 1px 2px rgba(0,0,0,.6);
+            box-shadow: 0 -1px 0 rgba(255,255,255,.45), 0 1px 2px rgba(0,0,0,.6);
+    margin-bottom: 35px;
+    padding: 6px;
+    height: 435px;
+}
+
+.lib_frame #lib_container {
+    border-top: 1px solid #25272B;
+    border-bottom: 1px solid #8A93A5;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    width: 700px;
+    min-height: 435px;
+    background-color:white;
+}
+
+.lib_frame #lib_container .radio_player {
+  padding: 4px;
+  padding-bottom:0px;
+}
+
+#lib_container .notice {
+  margin: auto;
+  position: relative;
+}

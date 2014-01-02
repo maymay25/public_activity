@@ -1,0 +1,19 @@
+<% if(nickname && uid){ %>
+  <ul>
+    <li>
+      <a href="/<%= uid %>"><%= nickname %></a>
+    </li>
+    <li>
+      <a href="/signout">登出</a>
+    </li>
+  </ul>
+<% }else{ %>
+  <ul>
+    <li>
+      <a href="/login">登录</a>
+    </li>
+    <li>
+      <a href="/logup">注册</a>
+    </li>
+  </ul>
+<% } %>
