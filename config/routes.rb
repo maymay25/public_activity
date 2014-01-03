@@ -1,9 +1,23 @@
 # encoding: utf-8
 World::Application.routes.draw do
 
-  root :to => 'demo#index'
+  root :to => 'lib#activities'
 
   match "test",:to=>"subject#test",via:[:get]
+
+
+  match "group",:to=>"group#index",via:[:get]
+  match "group/new",:to=>"group#new",via:[:get]
+  
+  match "group/create",:to=>"group#create",via:[:post]
+  match "group/:name", constraints: { name: /[a-zA-Z0-9_]*/ }, :to=>"group#topic_list",via:[:get]
+  match "group/join_group",:to=>"group#join_group",via:[:post] #加入小组 ajax
+  match "group/quit_group",:to=>"group#quit_group",via:[:post] #退出小组 ajax
+  match "group/:name/new",:to=>"group#new_topic", constraints: { name: /[a-zA-Z0-9_]*/ },via:[:get]
+  match "group/:name/create",:to=>"group#create_topic", constraints: { name: /[a-zA-Z0-9_]*/ },via:[:post]
+  match "group/:name/:topic_id",:to=>"group#topic", constraints: { name: /[a-zA-Z0-9_]*/, topic_id: /\d+/ },via:[:get]
+
+
 
   match "subject",:to=>"subject#index",via:[:get]
   match "subject/new",:to=>"subject#new",via:[:get]

@@ -76,8 +76,6 @@ gem 'nokogiri'
 
 gem 'oauth2'
 
-gem 'public_activity'
-
 gem 'ruby-hmac'
 
 #图片处理

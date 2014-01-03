@@ -30,7 +30,7 @@ class SubjectController < ApplicationController
   end
 
   def new
-    
+    return redirect_to "/",notice:'需要管理员权限' unless admin?
   end
 
   #创建新的专题
@@ -55,7 +55,7 @@ class SubjectController < ApplicationController
     @subject = Subject.where(identify:params[:identify]).first
     return render '404' if @subject.nil?
     @posts = SubjectPost.where(subject_identify:@subject.identify).where(publish_condition).order('created_at desc').page(params[:page]).per(10)
-    subject_sidebar @subject.id
+    subject_sidebar @subject
   end
 
   def tag_post_list
@@ -79,7 +79,7 @@ class SubjectController < ApplicationController
 
     @paginate_list = post_tags_relations
 
-    subject_sidebar init_id
+    subject_sidebar @subject
   end
 
   def post
@@ -91,21 +91,17 @@ class SubjectController < ApplicationController
     @subject = Subject.where(identify:params[:identify]).first
     return render '404' if @subject.nil?
 
-    #post的浏览次数 +1
-    @post.view_sum = @post.view_sum.to_i + 1
-    @post.save
-
     #上一条 下一条
     @pre_post = SubjectPost.where(is_publish:true, subject_id:@subject.id).where(["created_at > ?", @post.created_at ]).order('created_at asc').first
     @next_post = SubjectPost.where(is_publish:true, subject_id:@subject.id).where(["created_at < ?", @post.created_at ]).order('created_at desc').first
 
     #相关文章 热门文章 最新发表
-    @related_posts = SubjectPost.where(is_publish:true, subject_id:@subject.id).where.not(id:params[:post_id]).order('RANDOM()').limit(10)
-    @hot_posts = SubjectPost.where(is_publish:true).where.not(id:params[:post_id]).order('view_sum desc,comment_sum desc').limit(10)
-    @recent_posts = SubjectPost.where(is_publish:true).where.not(id:params[:post_id]).order('created_at desc').limit(10)
+    #@related_posts = SubjectPost.where(is_publish:true, subject_id:@subject.id).where.not(id:params[:post_id]).order('RANDOM()').limit(10)
+    #@hot_posts = SubjectPost.where(is_publish:true).where.not(id:params[:post_id]).order('view_sum desc,comment_sum desc').limit(10)
+    #@recent_posts = SubjectPost.where(is_publish:true).where.not(id:params[:post_id]).order('created_at desc').limit(10)
 
     #猜你喜欢
-    @maybelike_posts = SubjectPost.where(is_publish:true, subject_id:@subject.id).where.not(id:params[:post_id]).where.not(cover_path:nil).order('RANDOM()').limit(3)
+    #@maybelike_posts = SubjectPost.where(is_publish:true, subject_id:@subject.id).where.not(id:params[:post_id]).where.not(cover_path:nil).order('RANDOM()').limit(3)
 
     #favorite状态
     @is_favorite = @current_uid && FavoritePost.where(uid:@current_uid, post_id:@post.id).first.present?
@@ -113,7 +109,7 @@ class SubjectController < ApplicationController
     #评论
     @post_comments = get_comment_list_with_avatars(params[:post_id])
 
-    subject_sidebar @subject.id
+    subject_post_sidebar @subject,@post
 
     set_seo_meta(@post.title,@post.summary.truncate(120))
   end
@@ -123,7 +119,7 @@ class SubjectController < ApplicationController
     @subject = Subject.where(identify:params[:identify]).first
     return render '404' if @subject.nil?
 
-    subject_sidebar @subject.id
+    subject_sidebar @subject
   end
 
   #发布post
@@ -250,7 +246,7 @@ class SubjectController < ApplicationController
     @subject = Subject.where(identify:@post.subject_identify).first
     return render '404' if @subject.nil?
 
-    subject_sidebar @subject.id
+    subject_sidebar @subject
   end
 
   def update_post
@@ -531,7 +527,7 @@ class SubjectController < ApplicationController
     follower_uids = @follower_relations.collect{|f| f.uid }
     @subject_followers = User.where(id:follower_uids).select('id,nickname,avatar_path,gender')
 
-    subject_sidebar @subject.id
+    subject_sidebar @subject
   end
 
 
@@ -539,21 +535,26 @@ class SubjectController < ApplicationController
 private
 
   #侧边栏的数据
-  def subject_sidebar(subject_id)
+  def shared_sideber(subject)
 
     #当前专题的一些数据
-    #@subject_post_sum = SubjectPost.where(is_publish:true,subject_id:subject_id).count
-    @subject_followers_sum = FollowedSubject.where(subject_id:subject_id).count
+    @subject_followers_sum = FollowedSubject.where(subject_id:subject.id).count
 
     #订阅的状态
-    @is_follow = @current_uid && FollowedSubject.where(uid:@current_uid, subject_id:subject_id).select("id").first.present?
+    @is_follow = @current_uid && FollowedSubject.where(uid:@current_uid, subject_id:subject.id).select("id").first.present?
+
+  end
+
+  
+  def subject_sidebar(subject)
+    shared_sideber(subject)
 
     #订阅该专题的人
-    follower_uids = FollowedSubject.where(subject_id:subject_id).order('created_at desc').select('uid').limit(5).collect{|f| f.uid }
+    follower_uids = FollowedSubject.where(subject_id:subject.id).order('created_at desc').select('uid').limit(5).collect{|f| f.uid }
     @sidebar_followers = User.where(id:follower_uids).select('id,nickname,avatar_path,gender')
 
     #该专题下的标签 标签云
-    subject_tags = SubjectTags.select('subject_id,tag,post_sum').where(subject_id:subject_id).order('post_sum desc').limit(45)
+    subject_tags = SubjectTags.select('subject_id,tag,post_sum').where(subject_id:subject.id).order('post_sum desc').limit(45)
     tags_sum = subject_tags.length
     if tags_sum > 0
       rank_arr = []
@@ -567,11 +568,8 @@ private
       @subject_tags_cloud = []
     end
 
-    #大家正在热议
-    @public_comment_posts = SubjectPost.where(is_publish:true,subject_id:subject_id).where.not(comment_sum:nil).order('comment_sum desc,created_at desc').limit(6)
-
     #其它专题 也采用标签云样式
-    other_subjects = Subject.select('id,post_sum,title,identify').where(["post_sum > ?",0]).where.not(id:subject_id).order('post_sum desc').limit(12)
+    other_subjects = Subject.select('id,post_sum,title,identify').where(["post_sum > ?",0]).where.not(id:subject.id).order('post_sum desc').limit(12)
     subjects_sum = other_subjects.length
     if subjects_sum > 0
       rank_arr = []
@@ -584,6 +582,18 @@ private
     else
       @other_subjects_cloud = []
     end
+
+    #专题最新动态
+    @subject_activities = subject.activities.order('created_at desc').limit(20)
+
+  end
+
+  def subject_post_sidebar(subject,post)
+    shared_sideber(subject)
+
+    #文章最新动态
+    @subject_post_activities = post.activities.order('created_at desc').limit(20)
+
   end
 
   #获取带头像的评论列表

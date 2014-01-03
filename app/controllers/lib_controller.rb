@@ -1,6 +1,15 @@
 # -*- coding:utf-8 -*-
 class LibController < ApplicationController
-  layout:false
+  layout 'site2'
+
+  #2014-01-03
+  #activities
+  def activities
+
+    @activities = @current_user.activities_as_owner
+
+    #@activities = PublicActivity::Activity.order("created_at desc")
+  end
 
 
   #2013-08-30

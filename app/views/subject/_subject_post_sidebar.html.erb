@@ -26,11 +26,11 @@
       </div>
   </div>
 
-  <% if @subject_activities and @subject_activities.length >0 %>
+  <% if @subject_post_activities and @subject_post_activities.length >0 %>
   <div class="hot mgB20">
-    <h2>专题最新动态</h2>
+    <h2>文章最新动态</h2>
     <ul class="hot-thumb-wrap">
-      <% @subject_activities.each do |activity| %>
+      <% @subject_post_activities.each do |activity| %>
       <li class="hot-thumb">
         <span class="hot-thumb-number">
           <a href="javascript:;">10</a>
@@ -46,54 +46,6 @@
       </li>
       <% end %>
     </ul>
-  </div>
-  <% end %>
-
-  <% if @sidebar_followers and @sidebar_followers.length > 0 %>
-  <div class="fans mgB20">
-    <h2>
-      订阅该专题的人
-      <span class="normal">(<%= @subject_followers_sum %>)</span>
-      <% if @subject_followers_sum > 5 %>
-      <a href="javascript:;" class="fr normal">更多</a>
-      <% end %>
-    </h2>
-    <div class="fans_content">
-      <% @sidebar_followers.each do |user| %>
-      <div class="item">
-        <a class="none" href="/<%= user.id %>">
-          <img alt="" src="<%= user.avatar_path.normal.url %>">
-        </a>
-        <a class="down none nickname" href="/<%= user.id %>" title="<%= user.nickname %>"><%= user.nickname %></a>
-      </div>
-      <% end %>
-    </div>
-    <div class="clr"></div>
-  </div>
-  <% end %>
-
-  <% if @subject_tags_cloud and @subject_tags_cloud.length > 0 %>
-  <div class="tags mgB20">
-    <h2>该专题下的标签</h2>
-    <div class="tagcloud">
-      <% @subject_tags_cloud.each do |r,rank| %>
-      <a class="rank-<%= rank %>" title="<%= r.post_sum %>篇文章" href="/subject<%= @subject.id %>/<%= r.tag %>"><%= r.tag %></a>
-      <% end %>
-    </div>
-  </div>
-  <% end %>
-
-  <% if @other_subjects_cloud and @other_subjects_cloud.length > 0 %>
-  <div class="categories mgB20">
-    <h2>
-      其他专题
-    </h2>
-
-    <div class="tagcloud">
-      <% @other_subjects_cloud.each do |r,rank| %>
-      <a class="rank-<%= rank %>" title="<%= r.post_sum %>篇文章" href="/subject/<%= r.identify %>"><%= r.title %></a>
-      <% end %>
-    </div>
   </div>
   <% end %>
 

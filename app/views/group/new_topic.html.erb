@@ -1,0 +1,100 @@
+
+<div class="group_wrap">
+  <div class="container">
+
+
+		<div class="group-info">
+		  <h2 class="mgR10">在<%= @group.title %>小组里发言</h2>
+		</div>
+
+
+    <div class="content">
+				<div class="pd5">
+					标题:
+					<input type="text" id="group_title" name="title">
+				</div>
+				<div class="pd5">
+					内容:
+					<textarea id="ueditor" style="width:600px;height:480px;"></textarea>
+				</div>
+
+				<input type="button" id="submit_group" value="发布" onclick="javascript:return false;">
+    </div>
+
+  </div>
+</div>
+
+<script>
+	
+	var create_topic_url = "/group/<%= @group.name %>/create",
+			title_input = $("#group_title");
+
+
+	require(['jquery','page'],function($,Page){
+		$("#submit_group").bind('click',function(){
+			var title = title_input.val(),
+					content = topic_content_editor.getContent(),
+					summary = topic_content_editor.getContentTxt().slice(0,80);
+
+			if(!title){
+				Page.showQZMsg("请输入标题",'error');
+				Page.shine(title_input);
+				title_input.focus();
+				return false;
+			}
+
+			if(!content || !summary){
+				Page.showQZMsg("请输入内容",'error');
+				return false;
+			}
+
+      $.ajax({
+          url:create_topic_url,
+          type:"post",
+          dataType:"json",
+          data:{
+          	title:title,
+            content:content,
+            summary:summary
+          },
+          success:function(json){
+              var res = json.res,
+                  msg = json.msg,
+                  redirect = json.redirect;
+              if(res){
+                  if(msg){
+                    window.location.href=redirect;
+                  }
+              }else{
+                  if(msg){
+                    Page.showQZMsg(msg,'error');
+                  }
+              };
+          },
+          error:function(info){
+              if(info.status==400){
+                Page.showLoginBox($ele,null,null);
+              }else{
+                $(".W_layer_mask").remove();
+                Page.showQZMsg('操作失败,错误码:'+info.status,'error');
+              }
+          }
+      });
+
+
+		})
+
+	})
+
+</script>
+
+<% content_for :bodyScript do %>
+
+<script type="text/javascript" src="/assets/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="/assets/ueditor/ueditor.all.js"></script>
+<script type="text/javascript">
+  var topic_content_editor = new UE.ui.Editor();
+  topic_content_editor.render("ueditor");
+</script>
+
+<% end %>

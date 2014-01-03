@@ -33,9 +33,9 @@
 
       <div class="post_tags">
         <span class="down">
-          <%= feed_time(@post.created_at) %>发表 • <%= @post.comment_sum.to_i %>条评论 • <%= @post.view_sum.to_i %>次浏览
+          <%= feed_time(@post.created_at) %>发表 • <%= @post.comment_sum.to_i %>条评论 
           <% if admin? %>
-           • <%= '未发布' if !@post.is_publish %>
+           <%= "• 未发布" if !@post.is_publish %>
            • <a class="down" href="/subject_post/<%= @post.id %>/edit">编辑</a>
            • <a class="down" href="javascript:;" onclick="javascript:destroy_post(this);" data-post-id="<%= @post.id %>">删除</a>
           <% end %>
@@ -102,7 +102,7 @@
 
     </div>
   
-    <%= render partial:'subject_sidebar' %>
+    <%= render partial:'subject_post_sidebar' %>
   
   </div>
 </div>

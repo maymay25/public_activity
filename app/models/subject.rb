@@ -12,6 +12,8 @@ class Subject < ActiveRecord::Base
   has_many :subject_tags, class_name: 'SubjectTags', dependent: :destroy
   has_many :followed_subjects, dependent: :destroy
 
+  has_many :activities, class_name: "SubjectActivity", as: :recipient
+
   paginates_per 10
 
 end

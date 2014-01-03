@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
     attr_accessible :crop_x, :crop_y, :crop_w, :crop_h, :crop_oh, :crop_ow
     attr_accessor :crop_x, :crop_y, :crop_w, :crop_h, :crop_oh, :crop_ow
 
+    has_many :activities_as_owner, :class_name => "Activity", :as => :owner, dependent: :destroy
+    has_many :activities_as_recipient, :class_name => "Activity", :as => :recipient
 
     validates :password, :length=>{:within=>6..20}, :allow_nil => true
 
@@ -47,22 +49,12 @@ class User < ActiveRecord::Base
     def self.find_cache(uid)
         uid = uid.to_i
         return nil unless uid>0
-
-        if Settings.redis.online==false
-            return User.find_by_id(uid)
-        end
-
+        return User.find_by_id(uid) if Settings.redis.online==false
         rkey = "User::id#{uid}"
-        #p rkey
-        #User.redis.del(rkey)
         resource = User.redis.get(rkey)
-        #p resource
         if resource
             begin
-                # attrs = Yajl::Parser.parse(resource)
-                # user = User.new(attrs)
                 user = Marshal.load(resource)
-                #p "cached user"
             rescue
                 User.redis.del(rkey)
                 return User.find_by_id(uid)
@@ -70,10 +62,8 @@ class User < ActiveRecord::Base
         else
             user = User.find_by_id(uid)
             return nil if user.nil?
-            #User.redis.set(rkey,user.serializable_hash.to_json)
             User.redis.set(rkey,Marshal.dump(user))
             User.redis.expire(rkey,Settings.redis.expire);
-            #p "find user"
         end
         return user
     end
@@ -120,39 +110,26 @@ class User < ActiveRecord::Base
 
     def update_cache
         if Settings.redis.online
-            rkey = "User::#{self.username}:redis_cache"
-            User.redis.set(rkey,self.serializable_hash.to_json)
-            User.redis.expire(rkey,1800);
+            rkey = "User::id#{self.id}"
+            User.redis.set(rkey,Marshal.dump(self))
+            User.redis.expire(rkey,Settings.redis.expire)
         end
     end
 
     def destroy_cache
         if Settings.redis.online
-            rkey = "User::#{self.username}:redis_cache"
+            rkey = "User::id#{self.id}"
             User.redis.del(rkey)
         end
     end
     
-
-      
-    def self.encrypt(string)
-        Digest::SHA2.hexdigest(string)
-    end
-
-
     before_save do |r|
-
-        if r.id.nil?
-            if r.password 
-                r.encrypted_password = User.encrypt(r.password)
-            end
-            #r.avatar_path = "/assets/avatars/#{(1..10).to_a.sample}.jpg"
+        if r.new_record?
+            r.encrypted_password = Digest::SHA2.hexdigest(r.password) if r.password 
         end
-        
     end
 
     after_save do |r|
-
         r.update_cache
     end
 

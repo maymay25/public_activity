@@ -46,6 +46,21 @@ ActiveRecord::Schema.define(version: 201308029173423) do
   add_index "chats", ["to_uid"], name: "index_chats_on_to_uid", using: :btree
   add_index "chats", ["uid"], name: "index_chats_on_uid", using: :btree
 
+  create_table "favorite_group_topics", force: true do |t|
+    t.integer  "uid"
+    t.integer  "topic_id"
+    t.string   "topic_title",   limit: 80
+    t.string   "topic_summary", limit: 600
+    t.integer  "group_id"
+    t.string   "group_name",    limit: 80
+    t.string   "group_title",   limit: 80
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "favorite_group_topics", ["topic_id"], name: "index_favorite_group_topics_on_topic_id", using: :btree
+  add_index "favorite_group_topics", ["uid"], name: "index_favorite_group_topics_on_uid", using: :btree
+
   create_table "favorite_posts", force: true do |t|
     t.integer  "post_id"
     t.string   "post_title",       limit: 80
@@ -88,12 +103,53 @@ ActiveRecord::Schema.define(version: 201308029173423) do
   add_index "followed_subjects", ["subject_id"], name: "index_followed_subjects_on_subject_id", using: :btree
   add_index "followed_subjects", ["uid"], name: "index_followed_subjects_on_uid", using: :btree
 
+  create_table "group_topics", force: true do |t|
+    t.string   "title",        limit: 80
+    t.integer  "uid"
+    t.string   "summary",      limit: 600
+    t.text     "content"
+    t.integer  "group_id"
+    t.string   "group_title",  limit: 80
+    t.string   "group_name",   limit: 80
+    t.integer  "favorite_sum",             default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "group_topics", ["group_id"], name: "index_group_topics_on_group_id", using: :btree
+  add_index "group_topics", ["group_name"], name: "index_group_topics_on_group_name", using: :btree
+  add_index "group_topics", ["uid"], name: "index_group_topics_on_uid", using: :btree
+
+  create_table "groups", force: true do |t|
+    t.string   "title",      limit: 80
+    t.string   "name",       limit: 80
+    t.string   "intro",      limit: 999
+    t.integer  "member_sum",             default: 0
+    t.string   "cover_path"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "groups", ["name"], name: "index_groups_on_name", using: :btree
+
   create_table "ip_tables", force: true do |t|
     t.integer "start_at",      limit: 8
     t.integer "end_at",        limit: 8
     t.string  "province_name"
     t.string  "city_name"
   end
+
+  create_table "joined_groups", force: true do |t|
+    t.integer  "uid"
+    t.integer  "group_id"
+    t.string   "group_title", limit: 80
+    t.string   "group_name",  limit: 80
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "joined_groups", ["group_id"], name: "index_joined_groups_on_group_id", using: :btree
+  add_index "joined_groups", ["uid"], name: "index_joined_groups_on_uid", using: :btree
 
   create_table "linkmen", force: true do |t|
     t.integer  "uid"
@@ -106,6 +162,23 @@ ActiveRecord::Schema.define(version: 201308029173423) do
   end
 
   add_index "linkmen", ["uid"], name: "index_linkmen_on_uid", using: :btree
+
+  create_table "subject_activities", force: true do |t|
+    t.integer  "trackable_id"
+    t.string   "trackable_type"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.string   "key"
+    t.text     "parameters"
+    t.integer  "recipient_id"
+    t.string   "recipient_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "subject_activities", ["owner_id", "owner_type"], name: "index_subject_activities_on_owner_id_and_owner_type", using: :btree
+  add_index "subject_activities", ["recipient_id", "recipient_type"], name: "index_subject_activities_on_recipient_id_and_recipient_type", using: :btree
+  add_index "subject_activities", ["trackable_id", "trackable_type"], name: "index_subject_activities_on_trackable_id_and_trackable_type", using: :btree
 
   create_table "subject_post_comments", force: true do |t|
     t.integer  "post_id"

@@ -13,6 +13,9 @@ class CenterController < ApplicationController
     @followed_subjects = all_follow_relations.order('created_at desc').limit(7)
     @followed_subjects_sum = @followed_subjects.length>0 ? all_follow_relations.count : 0
 
+    #最新动态
+    @activities = @current_user.activities_as_owner
+
     user_basic_info(@u.id)
   end
 

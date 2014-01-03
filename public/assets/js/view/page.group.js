@@ -25,7 +25,7 @@ require(['jquery','underscore','page'], function( $, _, Page ){
             if(res){
               $ele.removeClass('already');
               if(msg&&flag=="quit"){
-                Page.showQZMsg(msg,'succ');
+                // Page.showQZMsg(msg,'succ');
               }
             }else{
               if(msg){
@@ -50,7 +50,7 @@ require(['jquery','underscore','page'], function( $, _, Page ){
             if(res){
               $ele.addClass('already');
               if(msg && flag=="join"){
-                Page.showQZMsg(msg,'succ');
+                // Page.showQZMsg(msg,'succ');
               }
             }else{
               if(msg){

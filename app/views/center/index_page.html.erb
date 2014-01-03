@@ -21,6 +21,20 @@
       </div>
 			<% end %>
 
+      <div class="ihome_forum_group ihome_section clearfix">
+          <h1 class="ihome_title">
+            <span class="cut_line">|</span><%= user_mark @u %>的动态
+          </h1>
+          <div class="clearfix u-f-wrap">
+            <% @activities.each do |activity| %>
+            <div class="activity">
+              <%= activity.inspect %>
+            </div>
+            <% end %>
+          </div>    
+      </div>
+
+
       <% if false %>
       <div class="ihome_forum_group ihome_section clearfix">
           <h1 class="ihome_title">

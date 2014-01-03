@@ -8,6 +8,7 @@ class SubjectPost < ActiveRecord::Base
   has_many :subject_post_tags, class_name: 'SubjectPostTags', foreign_key: 'post_id', dependent: :destroy
   has_many :subject_post_comments, foreign_key: 'post_id', dependent: :destroy
   has_many :favorite_posts, foreign_key: 'post_id', dependent: :destroy
+  has_many :activities, class_name: "Activity", as: :recipient
 
   paginates_per 10
 

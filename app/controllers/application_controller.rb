@@ -5,23 +5,12 @@ class ApplicationController < ActionController::Base
 
     helper_method :current_user, :signed_in?
 
-    before_filter :set_current_info,:p3p_header
-
-    #p3p header
-    def p3p_header
-        response.headers['P3P'] = "CP=CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP COR"  
-    end
+    before_filter :login_filter
 
     #全站filter 获取当前登录用户信息
-    def set_current_info
+    def login_filter
         login_from_session || login_from_cookie
-
-        if @current_user
-            @current_uid = @current_user.id
-        else
-            @current_uid = nil
-        end
-        
+        @current_uid = @current_user && @current_user.id
     end
 
     #检测是否登录
