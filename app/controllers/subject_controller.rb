@@ -53,7 +53,7 @@ class SubjectController < ApplicationController
 
   def post_list
     @subject = Subject.where(identify:params[:identify]).first
-    return render '404' if @subject.nil?
+    return render_404 if @subject.nil?
     @posts = SubjectPost.where(subject_identify:@subject.identify).where(publish_condition).order('created_at desc').page(params[:page]).per(10)
     subject_sidebar @subject
   end
@@ -62,13 +62,13 @@ class SubjectController < ApplicationController
 
     init_tag = params[:tag].to_s.strip
     init_id = params[:id].to_i
-    return render '404' if init_tag.empty? or init_id.zero?
+    return render_404 if init_tag.empty? or init_id.zero?
 
     @subject = Subject.where(id:init_id).first
-    return render '404' if @subject.nil?
+    return render_404 if @subject.nil?
 
     subject_tag = SubjectTags.where(subject_id:init_id,tag:init_tag).first
-    return render '404' if subject_tag.nil?
+    return render_404 if subject_tag.nil?
 
     post_tags_relations = SubjectPostTags.where(subject_id:init_id, tag:init_tag).order('post_id desc').page(params[:page]).per(10)
 
@@ -84,12 +84,12 @@ class SubjectController < ApplicationController
 
   def post
     @post = SubjectPost.where(id:params[:post_id]).where(publish_condition).first
-    return render '404' if @post.nil?
+    return render_404 if @post.nil?
 
     return redirect_to "/subject/#{@post.subject_identify}/#{@post.id}" if @post.subject_identify!=params[:identify]
 
     @subject = Subject.where(identify:params[:identify]).first
-    return render '404' if @subject.nil?
+    return render_404 if @subject.nil?
 
     #上一条 下一条
     @pre_post = SubjectPost.where(is_publish:true, subject_id:@subject.id).where(["created_at > ?", @post.created_at ]).order('created_at asc').first
@@ -117,7 +117,7 @@ class SubjectController < ApplicationController
   #创建post
   def new_post
     @subject = Subject.where(identify:params[:identify]).first
-    return render '404' if @subject.nil?
+    return render_404 if @subject.nil?
 
     subject_sidebar @subject
   end
@@ -241,10 +241,10 @@ class SubjectController < ApplicationController
   def edit_post
     #params[:post_id]
     @post = SubjectPost.where(id:params[:post_id]).first
-    return render '404' if @post.nil?
+    return render_404 if @post.nil?
 
     @subject = Subject.where(identify:@post.subject_identify).first
-    return render '404' if @subject.nil?
+    return render_404 if @subject.nil?
 
     subject_sidebar @subject
   end
@@ -252,10 +252,10 @@ class SubjectController < ApplicationController
   def update_post
     #params[:post_id]
     post = SubjectPost.where(id:params[:post_id]).first
-    return render '404' if post.nil?
+    return render_404 if post.nil?
 
     subject = Subject.where(identify:post.subject_identify).first
-    return render '404' if subject.nil?
+    return render_404 if subject.nil?
 
     cache_error = "请选择文章类型" if params[:content_type].blank?
 

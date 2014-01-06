@@ -13,7 +13,11 @@ module ApplicationHelper
 
   #资源不存在
   def render_404(msg=nil)
-    render text: msg,status:404
+    if msg
+      render text: msg,status:404
+    else
+      render file: '/public/404.html'
+    end
   end
 
   #操作失败

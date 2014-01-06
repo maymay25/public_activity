@@ -6,7 +6,7 @@ class CenterController < ApplicationController
   def index_page
   	#params[:uid]
   	@u = User.where(id:params[:uid]).first
-    return render '404' if @u.nil?
+    return render_404 if @u.nil?
 
     #订阅的专题
     all_follow_relations = FollowedSubject.where(uid:@u.id)
@@ -23,7 +23,7 @@ class CenterController < ApplicationController
   def favorite_page
   	#params[:uid]
   	@u = User.where(id:params[:uid]).first
-    return render '404' if @u.nil?
+    return render_404 if @u.nil?
 
   	@favorite_posts = FavoritePost.where(uid: @u.id).order("created_at desc").page(params[:page])
 
@@ -43,7 +43,7 @@ class CenterController < ApplicationController
   def comment_page
   	#params[:uid]
   	@u = User.where(id:params[:uid]).first
-    return render '404' if @u.nil?
+    return render_404 if @u.nil?
 
   	@comments = SubjectPostComment.where(uid:@u.id).order("created_at desc").page(params[:page]).per(20)
     
@@ -63,7 +63,7 @@ class CenterController < ApplicationController
   def subject_page
     #params[:uid]
     @u = User.where(id:params[:uid]).first
-    return render '404' if @u.nil?
+    return render_404 if @u.nil?
 
     all_follow_relations = FollowedSubject.where(uid:@u.id)
     @followed_subjects = all_follow_relations.order('created_at desc').page(params[:page]).per(40)
@@ -76,7 +76,7 @@ class CenterController < ApplicationController
   def follow_page
     #params[:uid]
     @u = User.where(id:params[:uid]).first
-    return render '404' if @u.nil?
+    return render_404 if @u.nil?
 
     @follow_relations = FollowStatus.where(uid:@u.id).select('id,to_uid').order('id desc').page(params[:page]).per(40)
 
@@ -92,7 +92,7 @@ class CenterController < ApplicationController
   def fans_page
     #params[:uid]
     @u = User.where(id:params[:uid]).first
-    return render '404' if @u.nil?
+    return render_404 if @u.nil?
 
     @follow_relations = FollowStatus.where(to_uid:@u.id).select('id,uid,to_uid').order('id desc').page(params[:page]).per(40)
 
@@ -107,7 +107,7 @@ class CenterController < ApplicationController
 
   def center_demo
     @u = User.where(id:params[:uid]).first
-    return render '404' if @u.nil?
+    return render_404 if @u.nil?
     
     user_basic_info(@u.id)
   end

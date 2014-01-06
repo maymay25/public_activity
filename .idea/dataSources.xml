@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="937070831">
+    <data-source source="LOCAL" name="Rails public_activity: development" uuid="d63d916a-bce8-4eaf-8abf-12817c1e5635">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://121.199.22.3:5432/activity_blog</jdbc-url>
+      <user-name>jeffrey</user-name>
+      <user-password>dfc2dfcfdfd8dfc5df98df9adf9adf9a</user-password>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails public_activity: test" uuid="31757e97-772c-4a98-80a6-d7a0fc48d01b">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://121.199.22.3:5432/activity_blog</jdbc-url>
+      <user-name>jeffrey</user-name>
+      <user-password>dfc2dfcfdfd8dfc5df98df9adf9adf9a</user-password>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails public_activity: production" uuid="5791bf62-4712-4191-90fb-b11244551a7f">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://121.199.22.3:5432/activity_blog</jdbc-url>
+      <user-name>jeffrey</user-name>
+      <user-password>dfc2dfcfdfd8dfc5df98df9adf9adf9a</user-password>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+

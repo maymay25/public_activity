@@ -9,7 +9,7 @@ class GroupController < ApplicationController
 
   def topic_list
     @group = Group.where(name:params[:name]).first
-    return render '404' if @group.nil?
+    return render_404 if @group.nil?
     @topics = GroupTopic.where(group_name:@group.name).order('created_at desc').page(params[:page]).per(50)
     
     #p @topics.length
@@ -19,7 +19,7 @@ class GroupController < ApplicationController
 
   def topic
     @topic = GroupTopic.where(id:params[:topic_id]).first
-    return render '404' if @topic.nil?
+    return render_404 if @topic.nil?
     return redirect_to "/group/#{@topic.group_name}/#{@topic.id}" if @topic.group_name!=params[:name]
     group_basic_info(@topic.group_id)
   end
@@ -30,7 +30,7 @@ class GroupController < ApplicationController
 
   def new_topic
     @group = Group.where(name:params[:name]).first
-    return render '404' if @group.nil?
+    return render_404 if @group.nil?
     return redirect_to "/group/#{@group.name}" unless signed_in?
     group_basic_info(@group.id)
   end
