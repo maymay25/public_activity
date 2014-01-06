@@ -31,8 +31,8 @@
           <% if @current_uid!=@u.id %>
           <div class="btn_grounps">
             <div class="interaction_wrap interaction_wrap_theme1">
-              <a class="btn_concern <%= "already" if @is_follow %>" href="javascript:;" data-uid="<%= @u.id %>" onclick="javascript:switch_follow_user(this);"></a>
-              <a class="btn_sendmsg" href="javascript:;" data-uid="<%= @u.id %>" data-nickname="<%= @u.nickname %>" onclick="javascript:chatTo(this);"></a>
+              <a class="btn_concern <%= "already" if @is_follow %>" href="javascript:;" data-uid="<%= @u.id %>" onclick="switch_follow_user(this);"></a>
+              <a class="btn_sendmsg" href="javascript:;" data-uid="<%= @u.id %>" data-nickname="<%= @u.nickname %>" onclick="chatTo(this);"></a>
             </div>
           </div>
           <% end %>

@@ -11,7 +11,7 @@
             <div class="n1"><a class="down" href="/subject/<%= @subject.identify %>/"><%= @subject.title %></a></div>
             <div class="n2">专题下有 <i><%= @subject.post_sum.to_i %></i> 篇文章</div>
             <div class="n2"><i><%= @subject_followers_sum %></i> 人订阅了该专题</div>
-            <div class="n2"><a href="javascript:;" class="ft16 lnk-selection <%= 'already' if @is_follow %>" data-subject-id="<%= @subject.id %>" onclick="javascript:switch_follow_subject(this);"><%= @is_follow ? '取消订阅' : '订阅' %></a></div>
+            <div class="n2"><a href="javascript:;" class="ft16 lnk-selection <%= 'already' if @is_follow %>" data-subject-id="<%= @subject.id %>" onclick="switch_follow_subject(this);"><%= @is_follow ? '取消订阅' : '订阅' %></a></div>
           </div>
         </div>
         <div class="clr"></div>

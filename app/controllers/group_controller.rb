@@ -5,6 +5,7 @@ class GroupController < ApplicationController
   layout 'site2'
 
   def index
+
   end
 
   def topic_list

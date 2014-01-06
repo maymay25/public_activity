@@ -11,7 +11,7 @@
         </div>
         <div class="share-fave">
           <div class="meta fr">
-            <a class="none <%= 'already' if @is_favorite %>" href="javascript:;" onclick="javascript:switch_favorite(this);" id="favorite_btn" data-post-id="<%= @post.id %>">
+            <a class="none <%= 'already' if @is_favorite %>" href="javascript:;" onclick="switch_favorite(this);" id="favorite_btn" data-post-id="<%= @post.id %>">
               <span class="remove">已经喜欢</span>
               <span class="add">喜欢</span>
               <sup class="num" title='<%= "#{@post.favorite_sum}人喜欢" if @post.favorite_sum.to_i>0 %>'><%= "+#{@post.favorite_sum}" if @post.favorite_sum.to_i>0 %></sup>
@@ -37,7 +37,7 @@
           <% if admin? %>
            <%= "• 未发布" if !@post.is_publish %>
            • <a class="down" href="/subject_post/<%= @post.id %>/edit">编辑</a>
-           • <a class="down" href="javascript:;" onclick="javascript:destroy_post(this);" data-post-id="<%= @post.id %>">删除</a>
+           • <a class="down" href="javascript:;" onclick="destroy_post(this);" data-post-id="<%= @post.id %>">删除</a>
           <% end %>
         </span>
         
@@ -89,7 +89,7 @@
             </div>
           </div>
           <div>
-            <input type="button" id="comment_submit" value="发表评论" onclick="javascript:add_new_comment();">
+            <input type="button" id="comment_submit" value="发表评论" onclick="add_new_comment();">
           </div>
         </div>
       </div>

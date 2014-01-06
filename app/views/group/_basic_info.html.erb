@@ -2,7 +2,7 @@
   <img align="left" valign="top" class="pil mgR10" src="<%= @group.cover_path.normal.url %>" alt="">
   <h1 class="mgR10"><%= @group.title %></h1>
   <div class="group-misc">
-      <a href="javascript:;" class="bn-join-group none <%= "already" if @is_join %>" onclick="javascript:switch_join_group(this);" data-group-id="<%= @group.id %>">
+      <a href="javascript:;" class="bn-join-group none <%= "already" if @is_join %>" onclick="switch_join_group(this);" data-group-id="<%= @group.id %>">
         <span class="tip">已加入 | </span>
         <span class="func"><span class="quit">退出</span><span class="join">加入</span>小组</span>
       </a>
