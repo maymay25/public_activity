@@ -2840,7 +2840,7 @@ font-family: 'Microsoft Yahei',verdana;
 cursor:pointer;
 }
 
-.topTip.succ {
+.topTip,.topTip.succ {
 color: #fff;
 background: #4a4;
 }
