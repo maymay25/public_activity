@@ -9,7 +9,7 @@ class SubjectController < ApplicationController
 
     result = sanitize_content(content)
     puts result
-
+    
     render text:result
     #render layout: false
   end

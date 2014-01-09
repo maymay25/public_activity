@@ -1,6 +1,6 @@
 require(['jquery','underscore','page'], function( $, _, Page ){
 
-  function add_new_comment(){
+  function add_new_comment(ele){
     var post_id = app_config['post_id'],
         $text_area = $('#comment_content'),
         content = $text_area.val();
@@ -26,33 +26,39 @@ require(['jquery','underscore','page'], function( $, _, Page ){
             content: content
         },
         success:function(json){
-            var res = json.res,
-                msg = json.msg,
-                comment = json.comment;
-            if(res){
-              if(msg){
-                Page.showQZMsg(msg,'succ');
-                $text_area.val('');
-              }
-              $.ajax({
-                  url:'/subject_post/comment_list',
-                  type:"get",
-                  dataType:"json",
-                  data:{
-                      post_id: post_id,
-                      page: 1
-                  },
-                  beforeSend:function(){
-                  },
-                  success:function(data){
-                    $('#commentlist').html(data.htm);
-                  }
-              });
-            }else{
-              if(msg){
-                Page.showTopNotice(msg,'error');
-              }
+          var res = json.res,
+              msg = json.msg,
+              comment = json.comment;
+          if(res){
+            if(msg){
+              Page.showQZMsg(msg,'succ');
+              $text_area.val('');
             }
+            $.ajax({
+                url:'/subject_post/comment_list',
+                type:"get",
+                dataType:"json",
+                data:{
+                    post_id: post_id,
+                    page: 1
+                },
+                beforeSend:function(){
+                },
+                success:function(data){
+                  $('#commentlist').html(data.htm);
+                }
+            });
+          }else{
+            if(msg){
+              Page.showTopNotice(msg,'error');
+            }
+          }
+        },
+        error:function(info){
+          if(info.status==400){
+            Page.todo_event.create({'dom':$(ele),'event':'click'});
+          }
+          Page.default_ajax_error_callback(info);
         }
     });
   }
@@ -224,9 +230,38 @@ require(['jquery','underscore','page'], function( $, _, Page ){
     if(!post_id){
       return false;
     };
-
     Page.showConfirmBox($ele,'确认要删除这篇文章吗？',function(){
       window.location.href="/subject_post/"+post_id+"/destroy";
+    });
+  }
+
+  function destroy_post_comment(ele){
+    var $ele = $(ele),
+        comment_id = $ele.data('id');
+    Page.showConfirmBox($ele,'确认要删除这条评论吗？',function(){
+      Page.remove_box($('.confirmBox'),true);
+      $.ajax({
+          url:'/subject_post/remove_comment',
+          type:"post",
+          dataType:"json",
+          data:{
+              comment_id: comment_id
+          },
+          success:function(json){
+            var res = json.res,
+                msg = json.msg;
+            if(res){
+              if(msg){
+                $ele.closest('.comment').slideUp();
+                Page.showTopTip(msg,'succ');
+              }
+            }else{
+              if(msg){
+                Page.showTopNotice(msg,'error');
+              }
+            }
+          }
+      })
     });
   }
 
@@ -235,4 +270,5 @@ require(['jquery','underscore','page'], function( $, _, Page ){
   window.load_comments = load_comments;
   window.switch_follow_subject = switch_follow_subject;
   window.destroy_post = destroy_post;
+  window.destroy_post_comment = destroy_post_comment;
 })

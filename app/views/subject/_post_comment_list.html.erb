@@ -18,8 +18,10 @@
       <div class="comment-meta commentmetadata"><%= c.created_at.strftime('%Y年%m月%d日 %H:%M') %></div>
       <p><%= simple_format(c.content) %></p>
     </div>
-    <div class="reply-to" style="display:none;">
-      <a class="down" href="javascript:;">回复</a>
+    <div class="reply-to">
+      <% if c.uid==@current_uid or admin? %>
+      <a class="down" id="comment-delete-btn" href="javascript:;" data-id="<%= c.id %>" onclick="destroy_post_comment(this);">删除</a>&nbsp;
+      <% end %>
     </div>
   </div>
   <% end %>

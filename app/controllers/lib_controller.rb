@@ -6,7 +6,11 @@ class LibController < ApplicationController
   #activities
   def activities
 
+    if @current_user
     @activities = @current_user.activities_as_owner
+  else
+    @activities = []
+  end
 
     #@activities = PublicActivity::Activity.order("created_at desc")
   end
